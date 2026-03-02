@@ -1,5 +1,7 @@
 import Link from 'next/link';
-import { Search, Menu, Bell, User, Gamepad2 } from 'lucide-react';
+import { Menu, Bell, User, Gamepad2 } from 'lucide-react';
+import SearchBar from './SearchBar';
+import { Suspense } from 'react';
 
 export default function Header() {
   return (
@@ -15,16 +17,9 @@ export default function Header() {
       </div>
 
       <div className="flex-1 max-w-2xl px-8">
-        <div className="flex items-center w-full bg-neutral-900 border border-neutral-800 rounded-full overflow-hidden focus-within:border-lime-400/50 transition-colors">
-          <input
-            type="text"
-            placeholder="Search games..."
-            className="flex-1 bg-transparent px-6 py-2.5 text-sm text-neutral-200 placeholder:text-neutral-500 focus:outline-none"
-          />
-          <button className="px-6 py-2.5 bg-neutral-800 hover:bg-neutral-700 transition-colors border-l border-neutral-800">
-            <Search className="w-5 h-5 text-neutral-400" />
-          </button>
-        </div>
+        <Suspense fallback={<div className="h-10 w-full bg-neutral-900 border border-neutral-800 rounded-full" />}>
+          <SearchBar />
+        </Suspense>
       </div>
 
       <div className="flex items-center gap-2">
