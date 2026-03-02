@@ -47,7 +47,7 @@ export default function Header({ resultCount = 0 }: HeaderProps) {
 
       <div className="flex items-center gap-2">
         <Link href="https://github.com/phalla-doll/neon-play" target="_blank" rel="noopener noreferrer" className="flex items-center px-2 py-1.5 transition-colors" onClick={() => handleNavigation('github', 'section')} aria-label="View on GitHub">
-          <Image src="/github_dark.svg" alt="GitHub" width={24} height={24} className="h-6 w-6 opacity-80 hover:opacity-100 transition-opacity" />
+          <Image src="/github_dark.svg" alt="GitHub" unoptimized width={24} height={24} className="h-6 w-6 opacity-80 hover:opacity-100 transition-opacity" />
         </Link>
       </div>
     </header>
