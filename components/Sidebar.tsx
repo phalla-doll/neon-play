@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Home, Compass, Clock, ThumbsUp, Flame, Trophy, Puzzle, Car } from 'lucide-react';
+import { Home, Compass, Clock, Bookmark, Flame, Trophy, Puzzle, Car } from 'lucide-react';
 
 export default function Sidebar() {
   const links = [
@@ -59,8 +59,8 @@ export default function Sidebar() {
             href="#"
             className="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-neutral-900 transition-colors text-neutral-400 hover:text-neutral-200"
           >
-            <ThumbsUp className="w-5 h-5" />
-            <span className="font-medium">Liked Games</span>
+            <Bookmark className="w-5 h-5" />
+            <span className="font-medium">Saved</span>
           </Link>
         </div>
       </div>
