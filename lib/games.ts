@@ -8,6 +8,7 @@ export type Game = {
   tags: string;
   description: string;
   category: string;
+  master_category: string;
   views: number;
   date: string;
   developer: string;
@@ -24,6 +25,7 @@ export const games: Game[] = [
     "tags": "1-player,2d,free,fun,funny,girl,html5,kids,love,mobile",
     "description": "Do you want to know how much your crush falls for you?  Here is a way to test the love of the one and only.  Love Tester is an online game where you fill out your and your crush's names.  Then, let the tester do all the calculations about how much they love you, miss you during the day, or have any second thoughts about you.",
     "category": "Girl",
+    "master_category": "Casual",
     "views": 1967825,
     "date": "2021-04-23T10:22:42",
     "developer": "Retro Works"
@@ -38,6 +40,7 @@ export const games: Game[] = [
     "tags": "3d,car,crazy,drift,driving,free,multiplayer,simulator,speed,unity",
     "description": "Drift King stands out among online drift games, offering a unique experience where you can witness the smoke you leave behind from the rearview window.  This game surrounds you in every realistic detail, from its premium 3D visuals to the choice of 10 sports cars and 6 maps. \nThe comprehensive tuning options further enhance the game, making it a complete package for drifting enthusiasts. \n\n\nControls\n\nWASD or arrow keys: Move car \nM: Rearview Mirror\nC: Change Carnera\nR: Reset Car\nU: Toggle between KMH and MPH\nI: Start/Stop Engine\nP: Fullscreen\n\n\n\nHow To Play Drift King\nThe traditional approach in a car game would be to give zero cash to the player at the beginning.",
     "category": "Drift",
+    "master_category": "Racing",
     "views": 4208603,
     "date": "2022-06-03T10:22:42",
     "developer": "Arcade Masters"
@@ -52,6 +55,7 @@ export const games: Game[] = [
     "tags": "1-player,3d,arcade,avoid,ball,color,crazy,destroy,free,mobile,mouse,skill",
     "description": "Reach the end by guiding the ball through each stage, avoiding the dark tiles. This game is a combination between relaxation but also keeping attention to details. With modern graphics, you will enjoy knocking down the colorful tiles as fast as you can.  Let the ball bounce and complete all the stages.",
     "category": "Arcade",
+    "master_category": "Casual",
     "views": 1819583,
     "date": "2024-12-17T10:22:42",
     "developer": "Pixel Dreams"
@@ -66,6 +70,7 @@ export const games: Game[] = [
     "tags": "1-player,3d,car,crash,crazy,driving,endless,free,police,racing,speed,traffic,unity",
     "description": "Highway Traffic game is centered around driving down the highway, dodging other cars, and avoiding accidents.  It gets tricky because other vehicles are slowing down, speeding up or stopping abruptly, so you always have to keep your attention and be ready to make a quick maneuver.  \nThe longer you go without hitting other cars, the more points you collect and the more upgrades you can get.  Highway Traffic gets challenging very quickly, so you must build up crazy driving skills to reach higher levels!",
     "category": "Racing",
+    "master_category": "Racing",
     "views": 1558591,
     "date": "2024-06-24T10:22:42",
     "developer": "Velocity Studios"
@@ -80,6 +85,7 @@ export const games: Game[] = [
     "tags": "1-player,3d,action,car,driving,free,gta,shooting,simulator,traffic,unity",
     "description": "You know that famous GTA video game series, right?  Well, meet its online and free version on OnlineGames. io.  GTA Simulator is a simulator game that you can play on your web browser without the need to download.",
     "category": "Shooting",
+    "master_category": "Action",
     "views": 633224,
     "date": "2021-05-03T10:22:42",
     "developer": "GameForge"
@@ -94,6 +100,7 @@ export const games: Game[] = [
     "tags": "1-player,3d,airplane,flying,free,simulator,unity",
     "description": "Real Flight Simulator is a realistic game that gives you the ultimate flight experience. There is the possibility to choose the aircraft you want and start to control the plane. You will become an expert in controlling the planes, reaching the heights and exploring skies. You will be able to test the following aircrafts:• A-10• A-29• F-35• KC-10 • M-262Follow the instructions to make the aircraft fly:1.",
     "category": "Simulator",
+    "master_category": "Racing",
     "views": 3768136,
     "date": "2022-06-22T10:22:42",
     "developer": "GameVerse"
@@ -108,6 +115,7 @@ export const games: Game[] = [
     "tags": "1-player,3d,avoid,free,funny,mobile,mouse,physics,skill,sports,unity,water",
     "description": "Backflip Challenge is an online skill game in which you help the grandpa to backflip from a high place.  Make him do a backflip with his elastic body by jumping from the trampoline.  However, you need to be extra cautious since his bones are fragile.  Avoid smashing his bones.",
     "category": "Sports",
+    "master_category": "Casual",
     "views": 545199,
     "date": "2024-04-25T10:22:42",
     "developer": "Studio X"
@@ -122,6 +130,7 @@ export const games: Game[] = [
     "tags": "3d,action,armor,battle-royale,first-person-shooter,free,gun,io-games,multiplayer,shooting,war,weapon",
     "description": "Masked Special Forces is a multiplayer first-person shooter game with a myriad of customization options.  The game puts you in the shoes of a commander in the battle arena.  As a talented warrior, team up, strategize, and take down the opponents one by one.  \nAccess to an array of upgradable weapons, armory, kill messages, and victory dances on the main menu.",
     "category": "Shooting",
+    "master_category": "Action",
     "views": 9242600,
     "date": "2023-07-10T10:22:42",
     "developer": "Digital Dreams"
@@ -136,6 +145,7 @@ export const games: Game[] = [
     "tags": "3d,car,crazy,drift,driving,free,multiplayer,speed,stunt,unity",
     "description": "Are you open to experiencing luxury?  The 3D driving game Madalin Stunt Cars Pro features excellent graphics for lifelike experiences.  You can choose from various vehicles in Madalin Stunt Cars Pro, from the most opulent sports cars to a police cruiser, in three distinct map areas. \nHow to play Madalin Stunt Cars Pro?",
     "category": "Drift",
+    "master_category": "Racing",
     "views": 7636477,
     "date": "2024-06-21T10:22:42",
     "developer": "Retro Works"
@@ -150,6 +160,7 @@ export const games: Game[] = [
     "tags": "1-player,3d,action,adventure,battle,car,driving,free,gta,gun,shooting,simulator,traffic,unity,weapon",
     "description": "You've been digging the internet for ages, looking for a free GTA game to play on your browser, only to end up with games that disappoint faster than a balloon losing air.  You might have given up hope, reminiscing about the days of cruising through GTA San Andreas or Vice City with your bro.  Think of how much you missed even hearing that iconic sound, the one that plays right as the screen fades to black with a bold \"Wasted! \" slapped across it?",
     "category": "Shooting",
+    "master_category": "Action",
     "views": 209031,
     "date": "2025-06-04T10:22:42",
     "developer": "DevHub"
@@ -164,6 +175,7 @@ export const games: Game[] = [
     "tags": "1-player,2d,action,adventure,arcade,free,fun,mobile,parkour,physics,running,stickman",
     "description": "Stickman Parkour is an online platformer game that you can play on your browser, embracing the easy-to-learn but hard-to-master mechanics.  Collect keys, open chests, pass levels and help him find his way out across 30 levels. \nWhat is Stickman Parkour about? \nImagine Stickman, a tiny stick figure who decides one day to go on this epic adventure.",
     "category": "Action",
+    "master_category": "Action",
     "views": 7190293,
     "date": "2023-01-28T10:22:42",
     "developer": "Retro Works"
@@ -178,6 +190,7 @@ export const games: Game[] = [
     "tags": "2-player,2d,action,arcade,battle,combat,crazy,free,fun,html5,physics,stickman",
     "description": "Remember those days when you and your brother used to wrestle for hours until one of you cried and complained to Mom?  It was a real duel, wasn't it?  You would flip over together like a human ball, with arms and legs flying in the air.  So, we've brought sibling wrestling to the virtual realm.",
     "category": "2 Player",
+    "master_category": "Casual",
     "views": 2708513,
     "date": "2022-05-17T10:22:42",
     "developer": "Nexus Labs"
@@ -192,6 +205,7 @@ export const games: Game[] = [
     "tags": "3d,car,crash,drift,driving,free,multiplayer,racing,speed,stunt,unity",
     "description": "Can you hear the engine moaning?  Drift Hunters Pro is a thrilling 3D game with high-quality graphics for those who are fond of drifting &amp; racing.  You can play solely, or you can play on the servers with other players.  In this game, you have 6 different tracks and 10 upgradable vehicles in the garage that you can buy with earnings via drifting.",
     "category": "Drift",
+    "master_category": "Racing",
     "views": 1814803,
     "date": "2021-09-08T10:22:42",
     "developer": "Quantum Games"
@@ -206,6 +220,7 @@ export const games: Game[] = [
     "tags": "3d,adventure,crazy,free,fun,kart,multiplayer,music,parkour,racing,roblox,unity",
     "description": "Dublix is an online multiplayer game with its exciting Roblox-inspired World!  Wander in the maze to find the exit, take your part in the parkour and drive a car in the race-track to earn coins.  The best way to end the night is to dance freely at the music festival. \nControls\n\nWASD or Arrow Keys: Move\nSpacebar: Jump\nLeft-Shift: Run\nE Key: Interact\n\nHow to Play Dublix\nWell, Dublix offers its players a free Roblox-inspired world.",
     "category": "Adventure",
+    "master_category": "Action",
     "views": 1722631,
     "date": "2023-03-08T10:22:42",
     "developer": "Pixel Forge"
@@ -220,6 +235,7 @@ export const games: Game[] = [
     "tags": "1-player,3d,car,crash,driving,free,racing,simulator,speed,stunt",
     "description": "Do you fancy doing some sightseeing?  Edy's Car Simulator is a game where you can freely wander the streets!  The city is all yours.  You are free to use the whole city however you want.",
     "category": "Racing",
+    "master_category": "Racing",
     "views": 4537923,
     "date": "2025-09-10T10:22:42",
     "developer": "Pixel Studios"
@@ -234,6 +250,7 @@ export const games: Game[] = [
     "tags": "3d,action,army,battle-royale,first-person-shooter,free,io-games,shooting",
     "description": "You are a particular elite team member and are called into battle.  Your weapons are ready, and your equipment is prepared.  All your team needs is you.  Guerrillas io is a multiplayer battling game that you can play online.",
     "category": "Shooting",
+    "master_category": "Action",
     "views": 7807870,
     "date": "2024-03-05T10:22:42",
     "developer": "Turbo Games"
@@ -248,6 +265,7 @@ export const games: Game[] = [
     "tags": "1-player,3d,free,organizing,simulator,tycoon,unity",
     "description": "Have you ever stood in line at a store and wondered, “What exactly are the cashiers doing on that screen? ” All those bippity boppity beeps and flashing buttons...  What do they even mean?  Okay, we'll solve that mystery.",
     "category": "Simulator",
+    "master_category": "Racing",
     "views": 6450753,
     "date": "2021-08-11T10:22:42",
     "developer": "Pixel Dreams"
@@ -262,6 +280,7 @@ export const games: Game[] = [
     "tags": "3d,action,battle,battle-royale,first-person-shooter,free,gun,multiplayer,shooting,unity,war,weapon",
     "description": "Everyone knows the famous Counter Strike game, 2000's online battle arena with online players.  CS Online, inspired by Counter-Strike, is a multiplayer shooting game where terrorists and counter-terrorists combat and kill each other with multiple weapon options.  It is the online and free version of the original game, and you can access the CS Online on your web browser without downloading or purchasing anything.  All you need to do is join an available room and start to play!",
     "category": "Shooting",
+    "master_category": "Action",
     "views": 5018715,
     "date": "2025-10-26T10:22:42",
     "developer": "Digital Forge"
@@ -276,6 +295,7 @@ export const games: Game[] = [
     "tags": "1-player,3d,car,crazy,drift,driving,free,gta,html5,mobile,police,skill,speed,traffic",
     "description": "Do you remember the very first Grand Theft Auto?  That old-school, top-down chaos.  Think of that and give it a fresh coat of chunky 3D graphics.  Next, drop that straight in your browser.",
     "category": "Drift",
+    "master_category": "Racing",
     "views": 6167228,
     "date": "2024-05-28T10:22:42",
     "developer": "Studio X"
@@ -290,6 +310,7 @@ export const games: Game[] = [
     "tags": "1-player,3d,adventure,crafting,defense,free,mouse,roblox,survival,unity,weapon",
     "description": "99 Nights in the Forest is an online survival game where you find yourself in a deserted forest.  To be able to survive for 99 nights, you need to guard yourself from all possible dangers, including werewolves.  Craft tools by collecting wood and other materials that you can find in the forest.  Light a campfire to stay warm at night!",
     "category": "Strategy",
+    "master_category": "Puzzle",
     "views": 1266941,
     "date": "2021-06-04T10:22:42",
     "developer": "Digital Dreams"
@@ -304,6 +325,7 @@ export const games: Game[] = [
     "tags": "1-player,2d,ball,basketball,endless,free,html5,mobile,mouse,physics,skill,sports",
     "description": "In Basket Hoop, gravity is your only challenge, and tapping is your sole weapon.  Your goal is simple make the ball jump and send it inside the hoop.  The charm of the one button games peaks in Basket Hoop online.  Make as many baskets as you can in a limited amount of time.",
     "category": "Sports",
+    "master_category": "Casual",
     "views": 4955124,
     "date": "2021-08-13T10:22:42",
     "developer": "Digital Dreams"
@@ -318,8 +340,99 @@ export const games: Game[] = [
     "tags": "3d,avoid,brainrot,crazy,free,funny,mouse,multiplayer,parkour,physics,racing,skill,unity",
     "description": "Fall Brainrots is a multiplayer parkour game in which you try to survive in various tracks with your Italian brainrot character.  Dodge obstacles and reach the finish line first in each course.  You must avoid falling; otherwise, you will be eliminated!  With its silly Brainrot characters, it’s a pretty enjoyable mix of platformer games and Italian brainrot games.",
     "category": "Racing",
+    "master_category": "Racing",
     "views": 1794522,
     "date": "2023-04-20T10:22:42",
     "developer": "Retro Works"
+  },
+  {
+    "id": "burnout-city",
+    "title": "Burnout City",
+    "embed": "https://cloud.onlinegames.io/games/2024/unity/burnout-city/index-og.html",
+    "url": "https://cloud.onlinegames.io/games/2024/unity/burnout-city/index-og.html",
+    "image": "https://www.onlinegames.io/media/posts/861/responsive/burnoutcity-xs.jpg",
+    "thumbnail": "https://www.onlinegames.io/media/posts/861/responsive/burnoutcity-xs.jpg",
+    "tags": "1-player,3d,car,drift,driving,free,gta,racing,simulator,speed,stunt,unity",
+    "description": "Burnout City is a place where the night never ends.  The streets of a hill-climbing city will be your playground.  Your toys?  Eleven awesome cars with lots of tuning options.",
+    "category": "Drift",
+    "master_category": "Racing",
+    "views": 7706962,
+    "date": "2024-09-24T10:22:42",
+    "developer": "Pixel Forge"
+  },
+  {
+    "id": "crazy-strike-force",
+    "title": "Crazy Strike Force",
+    "embed": "https://www.onlinegames.io/games/2023/unity/crazy-strike-force/index.html",
+    "url": "https://www.onlinegames.io/games/2023/unity/crazy-strike-force/index.html",
+    "image": "https://www.onlinegames.io/media/posts/366/responsive/Crazy-Strike-Force-xs.jpg",
+    "thumbnail": "https://www.onlinegames.io/media/posts/366/responsive/Crazy-Strike-Force-xs.jpg",
+    "tags": "3d,action,armor,battle,battle-royale,crazy,first-person-shooter,free,gun,shooting,unity,war,weapon",
+    "description": "Join the ultimate battle competition in the Crazy Strike Force game.  You can customize your character with a unique style and resist opponents.  With a great selection of weapons, you will be able to shoot anybody.  The enemies must be taken down, and do not hesitate to create your own strategy.",
+    "category": "Shooting",
+    "master_category": "Action",
+    "views": 2828882,
+    "date": "2023-03-31T10:22:42",
+    "developer": "Pixel Forge"
+  },
+  {
+    "id": "capybara-clicker-pro",
+    "title": "Capybara Clicker Pro",
+    "embed": "https://www.onlinegames.io/games/2023/q2/capybara-clicker-pro/index.html",
+    "url": "https://www.onlinegames.io/games/2023/q2/capybara-clicker-pro/index.html",
+    "image": "https://www.onlinegames.io/media/posts/554/responsive/Capybara-Clicker-Pro-xs.jpg",
+    "thumbnail": "https://www.onlinegames.io/media/posts/554/responsive/Capybara-Clicker-Pro-xs.jpg",
+    "tags": "1-player,2d,animal,clicker,cute,endless,free,html5,idle,mobile,mouse",
+    "description": "Capybara Clicker Pro is an idle clicker game in which you tap on the adorable Capybara to collect Capybara coins.  Increase the number of coins you make by clicking on the cute animal every second and every click to achieve more significant figures!  The goal of this game is to tap and earn coins.  As you progress, you'll also be able to unlock new great characters!",
+    "category": "Clicker",
+    "master_category": "Puzzle",
+    "views": 3614944,
+    "date": "2024-12-04T10:22:42",
+    "developer": "Retro Works"
+  },
+  {
+    "id": "warstrike",
+    "title": "WarStrike",
+    "embed": "https://cloud.onlinegames.io/games/2024/unity3/warstrike/index-og.html",
+    "url": "https://cloud.onlinegames.io/games/2024/unity3/warstrike/index-og.html",
+    "image": "https://www.onlinegames.io/media/posts/870/responsive/WarStrike-Online-xs.jpg",
+    "thumbnail": "https://www.onlinegames.io/media/posts/870/responsive/WarStrike-Online-xs.jpg",
+    "tags": "3d,action,battle,first-person-shooter,free,gun,shooting,simulator,sniper,unity,war,weapon",
+    "description": "In the ocean of shoot-'em-all games, finding an online shooter that meets your console gamer expectations can feel impossible.  After playing legends like Counter-Strike or Far Cry, other online FPS games may seem bland, lacking an immersive story.  But believe it or not, WarStrike will give you the taste of playing Call of Duty: Modern Warfare, all from the comfort of your browser. \nWarStrike's campaign mode takes you deep into a critical mission as an elite MI-6 Special Soldier.",
+    "category": "Sniper",
+    "master_category": "Action",
+    "views": 1297935,
+    "date": "2024-08-01T10:22:42",
+    "developer": "DevHub"
+  },
+  {
+    "id": "love-tester-story",
+    "title": "Love Tester Story",
+    "embed": "https://cloud.onlinegames.io/games/2024/construct/225/love-tester-story/index-og.html",
+    "url": "https://cloud.onlinegames.io/games/2024/construct/225/love-tester-story/index-og.html",
+    "image": "https://www.onlinegames.io/media/posts/816/responsive/Love-Tester-Story-xs.jpg",
+    "thumbnail": "https://www.onlinegames.io/media/posts/816/responsive/Love-Tester-Story-xs.jpg",
+    "tags": "1-player,2d,free,fun,funny,girl,html5,love,mobile",
+    "description": "Find the One for You! \nHoroscopes, tarot cards, crystal balls, or dream readings—humans have been curious about the unknown since the dawn of time.  We have developed endless methods just to glimpse the future and act accordingly.  From interpreting patterns in tea leaves, coffee grounds, or wine sediments, cultures have found various ways to predict future events.",
+    "category": "Girl",
+    "master_category": "Casual",
+    "views": 9061380,
+    "date": "2025-04-04T10:22:42",
+    "developer": "Digital Dreams"
+  },
+  {
+    "id": "fps-strike",
+    "title": "FPS Strike",
+    "embed": "https://cloud.onlinegames.io/games/2024/unity2/fps-strike/index-og.html",
+    "url": "https://cloud.onlinegames.io/games/2024/unity2/fps-strike/index-og.html",
+    "image": "https://www.onlinegames.io/media/posts/902/responsive/fps-strike-online-xs.jpg",
+    "thumbnail": "https://www.onlinegames.io/media/posts/902/responsive/fps-strike-online-xs.jpg",
+    "tags": "3d,action,arena,army,battle,battle-royale,first-person-shooter,free,gun,multiplayer,shooting,simulator,sniper,unity,war,weapon",
+    "description": "If you feel like playing a quick FPS match but all the hassle (finding a game, installing it, and customizing your player or loadout before the battle) is way too much, you're in the right place.  Enter FPS Strike, load the game and press the start button and voila!  You'll find yourself in the middle of the battlefield in seconds. \nFPS Strike is a free online shooter game you can play on OnlineGames.",
+    "category": "Sniper",
+    "master_category": "Action",
+    "views": 2841438,
+    "date": "2023-10-05T10:22:42",
+    "developer": "Quantum Games"
   }
 ];
