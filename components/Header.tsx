@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Menu, Bell, User, Gamepad2 } from 'lucide-react';
+import { Bell, User, Gamepad2, Sparkles } from 'lucide-react';
 import SearchBar from './SearchBar';
 import { Suspense } from 'react';
 
@@ -7,12 +7,19 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 flex h-16 items-center justify-between bg-neutral-950 px-4 border-b border-neutral-800">
       <div className="flex items-center gap-4">
-        <button className="p-2 hover:bg-neutral-800 rounded-full transition-colors">
-          <Menu className="w-6 h-6 text-neutral-200" />
-        </button>
-        <Link href="/" className="flex items-center gap-2">
-          <Gamepad2 className="w-8 h-8 text-lime-400" />
-          <span className="text-xl font-bold tracking-tight text-neutral-100">Neon Play</span>
+        <Link href="/" className="flex items-center gap-3 group relative">
+          <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-lime-400 to-emerald-600 shadow-[0_0_15px_rgba(163,230,53,0.3)] group-hover:shadow-[0_0_25px_rgba(163,230,53,0.5)] transition-shadow duration-300">
+            <Gamepad2 className="w-6 h-6 text-neutral-950 absolute z-10" />
+            <Sparkles className="w-3 h-3 text-white absolute top-1 right-1 opacity-70" />
+          </div>
+          <div className="flex flex-col">
+            <span className="text-xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-neutral-100 to-neutral-400">
+              NEON<span className="text-lime-400">PLAY</span>
+            </span>
+            <span className="text-[10px] font-medium tracking-widest text-neutral-500 uppercase -mt-1">
+              Arcade
+            </span>
+          </div>
         </Link>
       </div>
 
