@@ -1,6 +1,4 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/phalla-doll/neon-play/blob/main/public/og-image-main.jpeg" />
-</div>
+![Mantha Portfolio Preview](https://github.com/phalla-doll/neon-play/blob/main/public/og-image-main.jpeg)
 
 # Run and deploy your AI Studio app
 
