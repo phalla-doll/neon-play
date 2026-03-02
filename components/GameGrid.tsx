@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import GameCard from './GameCard';
 import { Game } from '@/lib/games';
 import { useAnalytics } from '@/lib/hooks/useAnalytics';
@@ -11,41 +11,59 @@ const ITEMS_PER_PAGE = 12;
 export default function GameGrid({ games }: { games: Game[] }) {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [displayedCount, setDisplayedCount] = useState(ITEMS_PER_PAGE);
-  const [prevCategory, setPrevCategory] = useState(selectedCategory);
-  const [prevGames, setPrevGames] = useState(games);
   const observerTarget = useRef<HTMLDivElement>(null);
   const analytics = useAnalytics();
+  const prevSelectedCategoryRef = useRef(selectedCategory);
+  const prevGamesRef = useRef(games);
 
-  // Reset displayed count when category or games change without using useEffect
-  if (selectedCategory !== prevCategory || games !== prevGames) {
-    setDisplayedCount(ITEMS_PER_PAGE);
-    setPrevCategory(selectedCategory);
-    setPrevGames(games);
-  }
+  const filteredGames = useMemo(() =>
+    selectedCategory === 'All'
+      ? games
+      : games.filter(game => game.category === selectedCategory),
+    [selectedCategory, games]
+  );
 
-  const filteredGames = selectedCategory === 'All' 
-    ? games 
-    : games.filter(game => game.category === selectedCategory);
+  const displayedGames = useMemo(() =>
+    filteredGames.slice(0, displayedCount),
+    [filteredGames, displayedCount]
+  );
 
-  const displayedGames = filteredGames.slice(0, displayedCount);
   const hasMore = displayedCount < filteredGames.length;
 
-  const handleCategoryChange = (category: string) => {
+  useEffect(() => {
+    if (prevGamesRef.current !== games) {
+      setDisplayedCount(prev => {
+        prevGamesRef.current = games;
+        return ITEMS_PER_PAGE;
+      });
+    }
+  }, [games]);
+
+  useEffect(() => {
+    if (prevSelectedCategoryRef.current !== selectedCategory) {
+      setDisplayedCount(prev => {
+        prevSelectedCategoryRef.current = selectedCategory;
+        return ITEMS_PER_PAGE;
+      });
+    }
+  }, [selectedCategory]);
+
+  const handleCategoryChange = useCallback((category: string) => {
     analytics.categoryFilterChanged({
       category: category,
       from_category: selectedCategory,
       location: 'grid',
     });
     setSelectedCategory(category);
-  };
+  }, [analytics, selectedCategory]);
 
-  const handleCategoryClick = (category: string) => {
+  const handleCategoryClick = useCallback((category: string) => {
     analytics.categoryFilter({
       category: category,
       from_category: selectedCategory,
       location: 'grid',
     });
-  };
+  }, [analytics, selectedCategory]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -86,7 +104,7 @@ export default function GameGrid({ games }: { games: Game[] }) {
         ))}
       </div>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-8" style={{ contentVisibility: 'auto' }}>
         {displayedGames.map((game, index) => (
           <GameCard key={game.id} game={game} position={index + 1} source="grid" />
         ))}

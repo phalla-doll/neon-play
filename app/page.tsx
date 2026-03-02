@@ -2,24 +2,31 @@ import Header from '@/components/Header';
 import Sidebar from '@/components/Sidebar';
 import MobileNav from '@/components/MobileNav';
 import GameGrid from '@/components/GameGrid';
-import { games } from '@/lib/games';
+import { games, type Game } from '@/lib/games';
+import { cache } from 'react';
 
-export default async function Home({ searchParams }: { searchParams: Promise<{ q?: string, mc?: string }> }) {
-  const { q, mc } = await searchParams;
-  
-  let filteredGames = games;
+const getFilteredGames = cache((games: Game[], q?: string, mc?: string) => {
+  let filtered = games;
 
   if (q) {
-    filteredGames = filteredGames.filter(game => 
-      game.title.toLowerCase().includes(q.toLowerCase()) || 
+    filtered = filtered.filter(game =>
+      game.title.toLowerCase().includes(q.toLowerCase()) ||
       game.category.toLowerCase().includes(q.toLowerCase()) ||
       game.developer.toLowerCase().includes(q.toLowerCase())
     );
   }
 
   if (mc) {
-    filteredGames = filteredGames.filter(game => game.master_category === mc);
+    filtered = filtered.filter(game => game.master_category === mc);
   }
+
+  return filtered;
+});
+
+export default async function Home({ searchParams }: { searchParams: Promise<{ q?: string, mc?: string }> }) {
+  const { q, mc } = await searchParams;
+
+  const filteredGames = getFilteredGames(games, q, mc);
 
   let title = 'Recommended Games';
   if (q) {

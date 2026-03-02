@@ -1,36 +1,36 @@
 'use client';
 
 import Link from 'next/link';
-import { Home, Compass, Clock, Bookmark, Flame, Trophy, Puzzle, Car } from 'lucide-react';
+import { Home, Compass, Trophy, Car, Puzzle, Clock, Bookmark } from 'lucide-react';
 import { useAnalytics } from '@/lib/hooks/useAnalytics';
+import { SIDEBAR_CATEGORIES } from '@/lib/categories';
+import { useCallback } from 'react';
+
+const CATEGORY_ICONS = {
+  Action: Trophy,
+  Racing: Car,
+  Puzzle: Puzzle,
+  Casual: Clock,
+} as const;
 
 export default function Sidebar() {
   const analytics = useAnalytics();
-  
+
   const links = [
     { icon: Home, label: 'Home', href: '/', target: 'home' as const },
-    { icon: Compass, label: 'Explore', href: '#', target: 'explore' as const },
-    { icon: Flame, label: 'Trending', href: '#', target: 'trending' as const },
   ];
 
-  const categories = [
-    { icon: Trophy, label: 'Action', href: '/?mc=Action' },
-    { icon: Car, label: 'Racing', href: '/?mc=Racing' },
-    { icon: Puzzle, label: 'Puzzle', href: '/?mc=Puzzle' },
-    { icon: Clock, label: 'Casual', href: '/?mc=Casual' },
-  ];
-
-  const handleNavigationClick = (target: string, type: 'main' | 'section' | 'category') => {
+  const handleNavigationClick = useCallback((target: string, type: 'main' | 'section' | 'category') => {
     analytics.navigation({ target, type });
-  };
+  }, [analytics]);
 
-  const handleCategoryClick = (category: string) => {
+  const handleCategoryClick = useCallback((category: string) => {
     analytics.categoryFilter({
       category,
       from_category: 'all',
       location: 'sidebar',
     });
-  };
+  }, [analytics]);
 
   return (
     <aside className="w-64 flex-shrink-0 bg-neutral-950 border-r border-neutral-800 h-[calc(100vh-4rem)] overflow-y-auto hidden md:block">
@@ -53,34 +53,40 @@ export default function Sidebar() {
           <h3 className="px-4 text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2">
             Categories
           </h3>
-          {categories.map((cat) => (
-            <Link
-              key={cat.label}
-              href={cat.href}
-              className="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-neutral-900 transition-colors text-neutral-400 hover:text-neutral-200"
-              onClick={() => handleCategoryClick(cat.label)}
-            >
-              <cat.icon className="w-5 h-5" />
-              <span className="font-medium">{cat.label}</span>
-            </Link>
-          ))}
+          {SIDEBAR_CATEGORIES.map((cat) => {
+            const IconComponent = CATEGORY_ICONS[cat.label as keyof typeof CATEGORY_ICONS];
+            return (
+              <Link
+                key={cat.label}
+                href={cat.href}
+                className="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-neutral-900 transition-colors text-neutral-400 hover:text-neutral-200"
+                onClick={() => handleCategoryClick(cat.label)}
+              >
+                <IconComponent className="w-5 h-5" aria-hidden="true" />
+                <span className="font-medium">{cat.label}</span>
+              </Link>
+            );
+          })}
         </div>
 
         <div className="pt-4 border-t border-neutral-800 space-y-1">
+          <h3 className="px-4 text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2">
+            Library
+          </h3>
           <Link
-            href="#"
+            href="/history"
             className="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-neutral-900 transition-colors text-neutral-400 hover:text-neutral-200"
             onClick={() => handleNavigationClick('history', 'section')}
           >
-            <Clock className="w-5 h-5" />
+            <Clock className="w-5 h-5" aria-hidden="true" />
             <span className="font-medium">History</span>
           </Link>
           <Link
-            href="#"
+            href="/saved"
             className="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-neutral-900 transition-colors text-neutral-400 hover:text-neutral-200"
             onClick={() => handleNavigationClick('saved', 'section')}
           >
-            <Bookmark className="w-5 h-5" />
+            <Bookmark className="w-5 h-5" aria-hidden="true" />
             <span className="font-medium">Saved</span>
           </Link>
         </div>
