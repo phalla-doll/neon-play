@@ -16,7 +16,7 @@ export default async function GamePage({ params }: { params: Promise<{ id: strin
   const relatedGames = games.filter((g) => g.id !== id).slice(0, 5);
 
   return (
-    <div className="flex flex-col min-h-screen bg-neutral-950 text-neutral-200 font-sans">
+    <div className="flex flex-col h-screen bg-neutral-950 text-neutral-200 font-sans">
       <Header />
       <div className="flex flex-1 overflow-hidden">
         <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8">

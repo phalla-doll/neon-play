@@ -16,7 +16,7 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside className="w-64 flex-shrink-0 bg-neutral-950 border-r border-neutral-800 h-[calc(100vh-4rem)] overflow-y-auto sticky top-16 hidden md:block">
+    <aside className="w-64 flex-shrink-0 bg-neutral-950 border-r border-neutral-800 h-[calc(100vh-4rem)] overflow-y-auto hidden md:block">
       <div className="px-4 py-2 space-y-6">
         <div className="space-y-1">
           {links.map((link) => (

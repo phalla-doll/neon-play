@@ -5,7 +5,7 @@ import { games } from '@/lib/games';
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-neutral-950 text-neutral-200 font-sans">
+    <div className="flex flex-col h-screen bg-neutral-950 text-neutral-200 font-sans">
       <Header />
       <div className="flex flex-1 overflow-hidden">
         <Sidebar />
