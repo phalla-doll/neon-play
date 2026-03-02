@@ -1,5 +1,6 @@
 import type {Metadata} from 'next';
 import { Inter } from 'next/font/google';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import './globals.css'; // Global styles
 
 const inter = Inter({
@@ -63,6 +64,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
       <body className="bg-neutral-950 text-neutral-200 font-sans antialiased min-h-screen flex flex-col" suppressHydrationWarning>
         {children}
       </body>
+      <GoogleAnalytics gaId="G-J2WS9KFG9R" />
     </html>
   );
 }
