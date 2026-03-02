@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Neon Play',
+  title: 'Neon Play | Online Game',
   description: 'A YouTube-style game embedding platform with a neon lime dark modern design.',
   keywords: ['games', 'play', 'embed', 'youtube-style', 'neon', 'gaming platform', 'web games'],
   robots: {
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     url: 'https://neongame.online/',
     title: 'Neon Play',
     description: 'A YouTube-style game embedding platform with a neon lime dark modern design.',
-    siteName: 'Neon Play',
+    siteName: 'Neon Play | Online Game',
     images: [
       {
         url: '/og-image-main.jpeg',
