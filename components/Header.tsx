@@ -41,7 +41,7 @@ export default function Header() {
           </button>
         ) : (
           <button className="flex items-center gap-2 px-2 sm:px-4 py-1.5 text-sm font-medium text-lime-400 border border-neutral-800 rounded-full hover:bg-lime-400/10 hover:border-lime-400/30 transition-colors">
-            <div className="w-6 h-6 rounded-full bg-lime-400/10 flex items-center justify-center">
+            <div className="w-6 h-6 rounded-full flex items-center justify-center">
               <User className="w-4 h-4 text-lime-400" />
             </div>
             <span className="hidden sm:inline">Sign in</span>
