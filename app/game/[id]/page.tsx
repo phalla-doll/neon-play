@@ -1,7 +1,7 @@
 import Header from '@/components/Header';
 import { games } from '@/lib/games';
 import { notFound } from 'next/navigation';
-import { ThumbsUp, ThumbsDown, Share2, Flag, Maximize } from 'lucide-react';
+import { Share2, Flag, Maximize } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -46,21 +46,9 @@ export default async function GamePage({ params }: { params: Promise<{ id: strin
                       <h3 className="font-semibold text-neutral-200">{game.developer}</h3>
                       <p className="text-sm text-neutral-400">1.2M subscribers</p>
                     </div>
-                    <button className="ml-4 px-6 py-2 bg-neutral-100 text-neutral-900 font-semibold rounded-full hover:bg-neutral-200 transition-colors">
-                      Subscribe
-                    </button>
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <div className="flex items-center bg-neutral-800 rounded-full border border-neutral-700 overflow-hidden">
-                      <button className="flex items-center gap-2 px-4 py-2 hover:bg-neutral-700 transition-colors border-r border-neutral-700">
-                        <ThumbsUp className="w-5 h-5" />
-                        <span className="font-medium">124K</span>
-                      </button>
-                      <button className="px-4 py-2 hover:bg-neutral-700 transition-colors">
-                        <ThumbsDown className="w-5 h-5" />
-                      </button>
-                    </div>
                     <button className="flex items-center gap-2 px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors font-medium">
                       <Share2 className="w-5 h-5" />
                       Share
