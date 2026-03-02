@@ -2,7 +2,7 @@
 
 # Neon Play
 
-A modern browser-based gaming platform featuring 50+ curated games across 14 diverse categories, built with Next.js 15 and designed for seamless gameplay experience.
+A modern browser-based gaming platform featuring 250+ curated games across 14 diverse categories, built with Next.js 15 and designed for seamless gameplay experience.
 
 ## 🎮 Features
 
