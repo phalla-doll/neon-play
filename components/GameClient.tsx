@@ -99,27 +99,34 @@ export default function GameClient({ game }: { game: Game }) {
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
             <button 
               onClick={() => setIsShareModalOpen(true)}
-              className="flex items-center gap-2 px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors font-medium"
+              className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors font-medium text-sm sm:text-base"
             >
-              <Share2 className="w-5 h-5" />
+              <Share2 className="w-4 h-4 sm:w-5 sm:h-5" />
               Share
             </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors font-medium">
-              <Bookmark className="w-5 h-5" />
+            <button className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors font-medium text-sm sm:text-base">
+              <Bookmark className="w-4 h-4 sm:w-5 sm:h-5" />
               Save
             </button>
             <button 
               onClick={toggleFullscreen}
-              className="flex items-center gap-2 px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors font-medium hidden sm:flex"
+              className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors font-medium text-sm sm:text-base sm:hidden"
+            >
+              <Maximize className="w-4 h-4" />
+              Fullscreen
+            </button>
+            <button 
+              onClick={toggleFullscreen}
+              className="hidden sm:flex items-center gap-2 px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors font-medium text-base"
             >
               <Maximize className="w-5 h-5" />
               Fullscreen
             </button>
             <button className="p-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors">
-              <Flag className="w-5 h-5" />
+              <Flag className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           </div>
         </div>

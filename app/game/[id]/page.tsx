@@ -1,4 +1,5 @@
 import Header from '@/components/Header';
+import MobileNav from '@/components/MobileNav';
 import { games } from '@/lib/games';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
@@ -19,6 +20,7 @@ export default async function GamePage({ params }: { params: Promise<{ id: strin
   return (
     <div className="flex flex-col h-screen bg-neutral-950 text-neutral-200 font-sans">
       <Header />
+      <MobileNav />
       <div className="flex flex-1 overflow-hidden">
         <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8">
           <div className="max-w-[1600px] mx-auto flex flex-col xl:flex-row gap-8">

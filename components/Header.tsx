@@ -15,7 +15,7 @@ export default function Header() {
             <Gamepad2 className="w-6 h-6 text-neutral-950 absolute z-10" />
             <Sparkles className="w-3 h-3 text-white absolute top-1 right-1 opacity-70" />
           </div>
-          <div className="flex flex-col">
+          <div className="hidden sm:flex flex-col">
             <span className="text-xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-neutral-100 to-neutral-400">
               NEON<span className="text-lime-400">PLAY</span>
             </span>
@@ -26,7 +26,7 @@ export default function Header() {
         </Link>
       </div>
 
-      <div className="flex-1 max-w-2xl px-8">
+      <div className="flex-1 max-w-2xl px-2 sm:px-4 md:px-8">
         <Suspense fallback={<div className="h-10 w-full bg-neutral-900 border border-neutral-800 rounded-full" />}>
           <SearchBar />
         </Suspense>
@@ -40,11 +40,11 @@ export default function Header() {
             </div>
           </button>
         ) : (
-          <button className="flex items-center gap-2 px-4 py-1.5 text-sm font-medium text-lime-400 border border-neutral-800 rounded-full hover:bg-lime-400/10 hover:border-lime-400/30 transition-colors">
+          <button className="flex items-center gap-2 px-2 sm:px-4 py-1.5 text-sm font-medium text-lime-400 border border-neutral-800 rounded-full hover:bg-lime-400/10 hover:border-lime-400/30 transition-colors">
             <div className="w-6 h-6 rounded-full bg-lime-400/10 flex items-center justify-center">
               <User className="w-4 h-4 text-lime-400" />
             </div>
-            Sign in
+            <span className="hidden sm:inline">Sign in</span>
           </button>
         )}
       </div>

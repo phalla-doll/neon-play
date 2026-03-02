@@ -1,5 +1,6 @@
 import Header from '@/components/Header';
 import Sidebar from '@/components/Sidebar';
+import MobileNav from '@/components/MobileNav';
 import GameGrid from '@/components/GameGrid';
 import { games } from '@/lib/games';
 
@@ -30,11 +31,12 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ q
   return (
     <div className="flex flex-col h-screen bg-neutral-950 text-neutral-200 font-sans">
       <Header />
+      <MobileNav />
       <div className="flex flex-1 overflow-hidden">
         <Sidebar />
-        <main className="flex-1 overflow-y-auto p-6 md:p-8 lg:p-10">
+        <main className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 lg:p-10">
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-3xl font-bold tracking-tight text-neutral-100 mb-6">
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-100 mb-6">
               {title}
             </h1>
             <GameGrid games={filteredGames} />
