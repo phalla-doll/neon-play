@@ -9,6 +9,17 @@ export default function SearchBar() {
   const searchParams = useSearchParams();
   const [query, setQuery] = useState(searchParams.get('q') || '');
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newQuery = e.target.value;
+    setQuery(newQuery);
+    
+    if (newQuery.trim()) {
+      router.push(`/?q=${encodeURIComponent(newQuery.trim())}`);
+    } else {
+      router.push('/');
+    }
+  };
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (query.trim()) {
@@ -23,7 +34,7 @@ export default function SearchBar() {
       <input
         type="text"
         value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={handleChange}
         placeholder="Search games..."
         className="flex-1 bg-transparent px-6 py-2.5 text-sm text-neutral-200 placeholder:text-neutral-500 focus:outline-none"
       />
