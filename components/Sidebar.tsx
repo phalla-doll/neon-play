@@ -9,10 +9,10 @@ export default function Sidebar() {
   ];
 
   const categories = [
-    { icon: Trophy, label: 'Action', href: '#' },
-    { icon: Car, label: 'Racing', href: '#' },
-    { icon: Puzzle, label: 'Puzzle', href: '#' },
-    { icon: Clock, label: 'Casual', href: '#' },
+    { icon: Trophy, label: 'Action', href: '/?mc=Action' },
+    { icon: Car, label: 'Racing', href: '/?mc=Racing' },
+    { icon: Puzzle, label: 'Puzzle', href: '/?mc=Puzzle' },
+    { icon: Clock, label: 'Casual', href: '/?mc=Casual' },
   ];
 
   return (
