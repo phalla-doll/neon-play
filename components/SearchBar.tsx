@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Search } from 'lucide-react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { Search01Icon } from '@hugeicons/core-free-icons';
 import { useAnalytics } from '@/lib/hooks/useAnalytics';
 
 interface SearchBarProps {
@@ -66,7 +67,7 @@ export default function SearchBar({ resultCount = 0 }: SearchBarProps) {
         className="flex-1 bg-transparent px-4 sm:px-6 py-2 sm:py-2.5 text-sm text-neutral-200 placeholder:text-neutral-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400/50 min-w-0"
       />
       <button type="submit" className="px-4 sm:px-6 py-2 sm:py-2.5 bg-neutral-800 hover:bg-neutral-700 transition-colors border-l border-neutral-800" aria-label="Search">
-        <Search className="w-4 h-4 sm:w-5 sm:h-5 text-neutral-400" />
+        <HugeiconsIcon icon={Search01Icon} size={20} color="#a3a3a3" strokeWidth={1.5} className="w-4 h-4 sm:w-5 sm:h-5" />
       </button>
     </form>
   );

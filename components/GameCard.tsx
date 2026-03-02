@@ -3,7 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Game } from '@/lib/games';
-import { Play } from 'lucide-react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { PlayIcon } from '@hugeicons/core-free-icons';
 import { formatNumber, formatDate } from '@/lib/utils';
 import { useAnalytics } from '@/lib/hooks/useAnalytics';
 import { useCallback } from 'react';
@@ -39,7 +40,7 @@ export default function GameCard({ game, position, source = 'grid' }: GameCardPr
         />
         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
           <div className="w-12 h-12 rounded-full bg-lime-400 flex items-center justify-center text-black shadow-[0_0_20px_rgba(204,255,0,0.5)]">
-            <Play className="w-6 h-6 ml-1" />
+            <HugeiconsIcon icon={PlayIcon} size={24} color="black" strokeWidth={1.5} className="ml-1" />
           </div>
         </div>
         <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-1 rounded text-xs font-mono text-neutral-300">

@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { Maximize, Minimize, Share2, Bookmark, Flag, X, Twitter, Facebook, Copy, Check, BookmarkCheck } from 'lucide-react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { ExpandIcon, MinimizeIcon, Share02Icon, Bookmark01Icon, Flag01Icon, Cancel02Icon, TwitterIcon, FacebookIcon, Copy01Icon, CheckmarkCircleIcon, BookmarkCheckIcon } from '@hugeicons/core-free-icons';
 import { Game } from '@/lib/games';
 import { formatNumber, formatDate } from '@/lib/utils';
 import { useAnalytics } from '@/lib/hooks/useAnalytics';
@@ -82,13 +83,13 @@ export default function GameClient({ game }: { game: Game }) {
         />
         
         {isFullscreen && (
-          <button 
+          <button
             type="button"
             onClick={toggleFullscreen}
             className="absolute top-4 right-4 z-[101] p-3 bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm transition-colors border border-white/10"
             aria-label="Exit fullscreen"
           >
-            <Minimize className="w-6 h-6" />
+            <HugeiconsIcon icon={MinimizeIcon} size={24} color="white" strokeWidth={1.5} />
           </button>
         )}
       </div>
@@ -109,49 +110,49 @@ export default function GameClient({ game }: { game: Game }) {
           </div>
 
           <div className="flex items-center gap-2 flex-wrap">
-            <button 
+            <button
               type="button"
               onClick={handleShareModalOpen}
               className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors font-medium text-sm sm:text-base"
             >
-              <Share2 className="w-4 h-4 sm:w-5 sm:h-5" />
+              <HugeiconsIcon icon={Share02Icon} size={20} color="currentColor" strokeWidth={1.5} className="w-4 h-4 sm:w-5 sm:h-5" />
               Share
             </button>
-            <button 
+            <button
               type="button"
               onClick={handleSaveToggle}
               className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full border transition-colors font-medium text-sm sm:text-base ${
-                gameIsSaved 
-                  ? 'bg-lime-400/10 border-lime-400/30 text-lime-400 hover:bg-lime-400/20' 
+                gameIsSaved
+                  ? 'bg-lime-400/10 border-lime-400/30 text-lime-400 hover:bg-lime-400/20'
                   : 'bg-neutral-800 border-neutral-700 text-neutral-200 hover:bg-neutral-700'
               }`}
             >
-              {gameIsSaved ? <BookmarkCheck className="w-4 h-4 sm:w-5 sm:h-5" /> : <Bookmark className="w-4 h-4 sm:w-5 sm:h-5" />}
+              {gameIsSaved ? <HugeiconsIcon icon={BookmarkCheckIcon} size={20} color="#84cc16" strokeWidth={1.5} className="w-4 h-4 sm:w-5 sm:h-5" /> : <HugeiconsIcon icon={Bookmark01Icon} size={20} color="currentColor" strokeWidth={1.5} className="w-4 h-4 sm:w-5 sm:h-5" />}
               {gameIsSaved ? 'Saved' : 'Save'}
             </button>
-            <button 
+            <button
               type="button"
               onClick={toggleFullscreen}
               className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors font-medium text-sm sm:text-base sm:hidden"
             >
-              <Maximize className="w-4 h-4" />
+              <HugeiconsIcon icon={ExpandIcon} size={16} color="currentColor" strokeWidth={1.5} />
               Fullscreen
             </button>
-            <button 
+            <button
               type="button"
               onClick={toggleFullscreen}
               className="hidden sm:flex items-center gap-2 px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors font-medium text-base"
             >
-              <Maximize className="w-5 h-5" />
+              <HugeiconsIcon icon={ExpandIcon} size={20} color="currentColor" strokeWidth={1.5} />
               Fullscreen
             </button>
-            <button 
+            <button
               type="button"
               onClick={() => analytics.reportClick()}
               aria-label="Report this game"
               className="p-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors"
             >
-              <Flag className="w-4 h-4 sm:w-5 sm:h-5" />
+              <HugeiconsIcon icon={Flag01Icon} size={20} color="currentColor" strokeWidth={1.5} className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           </div>
         </div>
@@ -176,30 +177,30 @@ export default function GameClient({ game }: { game: Game }) {
           <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-6 w-full max-w-md shadow-2xl">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold text-neutral-100">Share this game</h2>
-              <button 
+              <button
                 type="button"
                 onClick={handleModalClose}
                 className="p-2 hover:bg-neutral-800 rounded-full transition-colors text-neutral-400 hover:text-neutral-200"
               >
-                <X className="w-5 h-5" />
+                <HugeiconsIcon icon={Cancel02Icon} size={20} color="currentColor" strokeWidth={1.5} />
               </button>
             </div>
             
             <div className="grid grid-cols-2 gap-4 mb-6">
-              <button 
+              <button
                 type="button"
                 onClick={handleShareTwitter}
                 className="flex items-center justify-center gap-2 py-3 bg-[#1DA1F2]/10 hover:bg-[#1DA1F2]/20 text-[#1DA1F2] rounded-xl transition-colors font-medium"
               >
-                <Twitter className="w-5 h-5" />
+                <HugeiconsIcon icon={TwitterIcon} size={20} color="#1DA1F2" strokeWidth={1.5} />
                 Twitter
               </button>
-              <button 
+              <button
                 type="button"
                 onClick={handleShareFacebook}
                 className="flex items-center justify-center gap-2 py-3 bg-[#1877F2]/10 hover:bg-[#1877F2]/20 text-[#1877F2] rounded-xl transition-colors font-medium"
               >
-                <Facebook className="w-5 h-5" />
+                <HugeiconsIcon icon={FacebookIcon} size={20} color="#1877F2" strokeWidth={1.5} />
                 Facebook
               </button>
             </div>
@@ -211,12 +212,12 @@ export default function GameClient({ game }: { game: Game }) {
                 value={typeof window !== 'undefined' ? window.location.href : ''} 
                 className="flex-1 bg-transparent text-sm text-neutral-400 px-2 truncate focus:outline-none focus-visible:ring-0"
               />
-              <button 
+              <button
                 type="button"
                 onClick={handleCopyLink}
                 className="flex items-center gap-2 px-4 py-2 bg-neutral-800 hover:bg-neutral-700 text-neutral-200 rounded-lg transition-colors font-medium text-sm"
               >
-                {isCopied ? <Check className="w-4 h-4 text-lime-400" /> : <Copy className="w-4 h-4" />}
+                {isCopied ? <HugeiconsIcon icon={CheckmarkCircleIcon} size={16} color="#84cc16" strokeWidth={1.5} /> : <HugeiconsIcon icon={Copy01Icon} size={16} color="currentColor" strokeWidth={1.5} />}
                 {isCopied ? 'Copied!' : 'Copy'}
               </button>
             </div>

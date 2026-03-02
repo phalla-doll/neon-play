@@ -1,23 +1,24 @@
 'use client';
 
 import Link from 'next/link';
-import { Home, Compass, Trophy, Car, Puzzle, Clock, Bookmark } from 'lucide-react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { Home01Icon, CompassIcon, Award01Icon, Car01Icon, PuzzleIcon, ClockIcon, Bookmark01Icon } from '@hugeicons/core-free-icons';
 import { useAnalytics } from '@/lib/hooks/useAnalytics';
 import { SIDEBAR_CATEGORIES } from '@/lib/categories';
 import { useCallback } from 'react';
 
 const CATEGORY_ICONS = {
-  Action: Trophy,
-  Racing: Car,
-  Puzzle: Puzzle,
-  Casual: Clock,
+  Action: Award01Icon,
+  Racing: Car01Icon,
+  Puzzle: PuzzleIcon,
+  Casual: ClockIcon,
 } as const;
 
 export default function Sidebar() {
   const analytics = useAnalytics();
 
   const links = [
-    { icon: Home, label: 'Home', href: '/', target: 'home' as const },
+    { icon: Home01Icon, label: 'Home', href: '/', target: 'home' as const },
   ];
 
   const handleNavigationClick = useCallback((target: string, type: 'main' | 'section' | 'category') => {
@@ -43,7 +44,7 @@ export default function Sidebar() {
               className="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-neutral-900 transition-colors text-neutral-300 hover:text-lime-400 group"
               onClick={() => handleNavigationClick(link.target, link.target === 'home' ? 'main' : 'section')}
             >
-              <link.icon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+              <HugeiconsIcon icon={link.icon} size={20} color="currentColor" strokeWidth={1.5} className="group-hover:scale-110 transition-transform" />
               <span className="font-medium">{link.label}</span>
             </Link>
           ))}
@@ -62,7 +63,7 @@ export default function Sidebar() {
                 className="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-neutral-900 transition-colors text-neutral-400 hover:text-neutral-200"
                 onClick={() => handleCategoryClick(cat.label)}
               >
-                <IconComponent className="w-5 h-5" aria-hidden="true" />
+                <HugeiconsIcon icon={IconComponent} size={20} color="currentColor" strokeWidth={1.5} aria-hidden="true" />
                 <span className="font-medium">{cat.label}</span>
               </Link>
             );
@@ -78,7 +79,7 @@ export default function Sidebar() {
             className="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-neutral-900 transition-colors text-neutral-400 hover:text-neutral-200"
             onClick={() => handleNavigationClick('history', 'section')}
           >
-            <Clock className="w-5 h-5" aria-hidden="true" />
+            <HugeiconsIcon icon={ClockIcon} size={20} color="currentColor" strokeWidth={1.5} aria-hidden="true" />
             <span className="font-medium">History</span>
           </Link>
           <Link
@@ -86,7 +87,7 @@ export default function Sidebar() {
             className="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-neutral-900 transition-colors text-neutral-400 hover:text-neutral-200"
             onClick={() => handleNavigationClick('saved', 'section')}
           >
-            <Bookmark className="w-5 h-5" aria-hidden="true" />
+            <HugeiconsIcon icon={Bookmark01Icon} size={20} color="currentColor" strokeWidth={1.5} aria-hidden="true" />
             <span className="font-medium">Saved</span>
           </Link>
         </div>
