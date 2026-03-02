@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /static/
+Crawl-delay: 1
+Sitemap: https://neongame.online/sitemap.xml

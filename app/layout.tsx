@@ -1,4 +1,4 @@
-import type {Metadata} from 'next';
+import type {Metadata, Viewport} from 'next';
 import { Inter } from 'next/font/google';
 import DeferredGoogleAnalytics from '@/components/GoogleAnalytics';
 import './globals.css'; // Global styles
@@ -59,15 +59,16 @@ export const metadata: Metadata = {
     creator: '@neonplay',
   },
   metadataBase: new URL('https://neongame.online/'),
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
   themeColor: [
     { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' },
     { media: '(prefers-color-scheme: light)', color: '#ffffff' },
   ],
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-  },
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
