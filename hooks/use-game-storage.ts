@@ -5,11 +5,9 @@ import { getHistory, clearHistory, getSavedGames, toggleSave, clearSaved } from 
 import type { HistoryEntry } from '@/lib/storage';
 
 export function useHistory() {
-  const [history, setHistory] = useState<HistoryEntry[]>([]);
+  const [history, setHistory] = useState<HistoryEntry[]>(() => getHistory());
 
   useEffect(() => {
-    setHistory(getHistory());
-
     const handleStorageChange = () => {
       setHistory(getHistory());
     };
@@ -30,11 +28,9 @@ export function useHistory() {
 }
 
 export function useSavedGames() {
-  const [savedGameIds, setSavedGameIds] = useState<string[]>([]);
+  const [savedGameIds, setSavedGameIds] = useState<string[]>(() => getSavedGames());
 
   useEffect(() => {
-    setSavedGameIds(getSavedGames());
-
     const handleStorageChange = () => {
       setSavedGameIds(getSavedGames());
     };
