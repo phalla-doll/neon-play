@@ -1,6 +1,6 @@
 import Header from '@/components/Header';
 import Sidebar from '@/components/Sidebar';
-import GameCard from '@/components/GameCard';
+import GameGrid from '@/components/GameGrid';
 import { games } from '@/lib/games';
 
 export default function Home() {
@@ -11,14 +11,10 @@ export default function Home() {
         <Sidebar />
         <main className="flex-1 overflow-y-auto p-6 md:p-8 lg:p-10">
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-3xl font-bold tracking-tight text-neutral-100 mb-8">
+            <h1 className="text-3xl font-bold tracking-tight text-neutral-100 mb-6">
               Recommended Games
             </h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-10">
-              {games.map((game) => (
-                <GameCard key={game.id} game={game} />
-              ))}
-            </div>
+            <GameGrid games={games} />
           </div>
         </main>
       </div>
