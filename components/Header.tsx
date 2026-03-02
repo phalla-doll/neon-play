@@ -1,9 +1,12 @@
 import Link from 'next/link';
-import { Bell, User, Gamepad2, Sparkles } from 'lucide-react';
+import { User, Gamepad2, Sparkles } from 'lucide-react';
 import SearchBar from './SearchBar';
 import { Suspense } from 'react';
 
 export default function Header() {
+  // Mock authentication state for now
+  const isLoggedIn = false;
+
   return (
     <header className="sticky top-0 z-50 flex h-16 items-center justify-between bg-neutral-950 px-4 border-b border-neutral-800">
       <div className="flex items-center gap-4">
@@ -30,14 +33,20 @@ export default function Header() {
       </div>
 
       <div className="flex items-center gap-2">
-        <button className="p-2 hover:bg-neutral-800 rounded-full transition-colors">
-          <Bell className="w-6 h-6 text-neutral-200" />
-        </button>
-        <button className="p-2 hover:bg-neutral-800 rounded-full transition-colors">
-          <div className="w-8 h-8 rounded-full bg-lime-400/10 flex items-center justify-center border border-lime-400/20">
-            <User className="w-5 h-5 text-lime-400" />
-          </div>
-        </button>
+        {isLoggedIn ? (
+          <button className="p-2 hover:bg-neutral-800 rounded-full transition-colors">
+            <div className="w-8 h-8 rounded-full bg-lime-400/10 flex items-center justify-center border border-lime-400/20">
+              <User className="w-5 h-5 text-lime-400" />
+            </div>
+          </button>
+        ) : (
+          <button className="flex items-center gap-2 px-4 py-1.5 text-sm font-medium text-lime-400 border border-neutral-800 rounded-full hover:bg-lime-400/10 hover:border-lime-400/30 transition-colors">
+            <div className="w-6 h-6 rounded-full bg-lime-400/10 flex items-center justify-center">
+              <User className="w-4 h-4 text-lime-400" />
+            </div>
+            Sign in
+          </button>
+        )}
       </div>
     </header>
   );
