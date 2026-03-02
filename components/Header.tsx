@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { HugeiconsIcon } from '@hugeicons/react';
-import { UserIcon, GameIcon, SparklesIcon } from '@hugeicons/core-free-icons';
+import { GameIcon, SparklesIcon } from '@hugeicons/core-free-icons';
 import SearchBar from './SearchBar';
 import { Suspense } from 'react';
 import { useAnalytics } from '@/lib/hooks/useAnalytics';
@@ -14,15 +15,9 @@ interface HeaderProps {
 
 export default function Header({ resultCount = 0 }: HeaderProps) {
   const analytics = useAnalytics();
-  // Mock authentication state for now
-  const isLoggedIn = false;
 
   const handleNavigation = useCallback((target: string, type: 'main' | 'section' | 'category') => {
     analytics.navigation({ target, type });
-  }, [analytics]);
-
-  const handleAuthClick = useCallback(() => {
-    analytics.authClick('sign_in');
   }, [analytics]);
 
   return (
@@ -51,20 +46,9 @@ export default function Header({ resultCount = 0 }: HeaderProps) {
       </div>
 
       <div className="flex items-center gap-2">
-        {isLoggedIn ? (
-          <button type="button" className="p-2 hover:bg-neutral-800 rounded-full transition-colors" aria-label="User profile">
-            <div className="w-8 h-8 rounded-full bg-lime-400/10 flex items-center justify-center border border-lime-400/20">
-              <HugeiconsIcon icon={UserIcon} size={20} color="#84cc16" strokeWidth={1.5} />
-            </div>
-          </button>
-        ) : (
-          <button type="button" className="flex items-center gap-2 px-2 sm:px-4 py-1.5 text-sm font-medium text-lime-400 border border-neutral-800 rounded-full hover:bg-lime-400/10 hover:border-lime-400/30 transition-colors" onClick={handleAuthClick} aria-label="Sign in">
-            <div className="w-6 h-6 rounded-full flex items-center justify-center">
-              <HugeiconsIcon icon={UserIcon} size={16} color="#84cc16" strokeWidth={1.5} />
-            </div>
-            <span className="hidden sm:inline">Sign in</span>
-          </button>
-        )}
+        <Link href="https://github.com/phalla-doll/neon-play" target="_blank" rel="noopener noreferrer" className="flex items-center px-2 py-1.5 transition-colors" onClick={() => handleNavigation('github', 'section')} aria-label="View on GitHub">
+          <Image src="/github_dark.svg" alt="GitHub" width={24} height={24} className="h-6 w-6 opacity-80 hover:opacity-100 transition-opacity" />
+        </Link>
       </div>
     </header>
   );
