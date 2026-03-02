@@ -5,7 +5,7 @@ import GameCard from './GameCard';
 import { Game } from '@/lib/games';
 
 const CATEGORIES = ['All', 'Action', 'Racing', 'Arcade', 'Puzzle', 'Casual', 'Sports', 'Shooting', 'Drift', 'Simulator', 'Adventure', 'Strategy', '2 Player', 'Girl'];
-const ITEMS_PER_PAGE = 8;
+const ITEMS_PER_PAGE = 12;
 
 export default function GameGrid({ games }: { games: Game[] }) {
   const [selectedCategory, setSelectedCategory] = useState('All');
