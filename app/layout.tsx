@@ -23,6 +23,18 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  icons: {
+    icon: '/favicon.png',
+    shortcut: '/favicon.png',
+    apple: '/apple-touch-icon.png',
+    other: [
+      {
+        rel: 'apple-touch-icon-precomposed',
+        url: '/apple-touch-icon.png',
+      },
+    ],
+  },
+  manifest: '/manifest.json',
   openGraph: {
     type: 'website',
     locale: 'en_US',

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a3e635" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur" />
+      <feMerge>
+        <feMergeNode in="coloredBlur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <rect x="96" y="128" width="320" height="256" rx="48" fill="url(#gradient)" filter="url(#glow)" />
+  <rect x="112" y="144" width="288" height="224" rx="32" fill="#0a0a0a" opacity="0.1" />
+  
+  <circle cx="160" cy="256" r="40" fill="#0a0a0a" />
+  <circle cx="352" cy="256" r="40" fill="#0a0a0a" />
+  
+  <circle cx="160" cy="256" r="20" fill="#0a0a0a" opacity="0.3" />
+  <circle cx="352" cy="256" r="20" fill="#0a0a0a" opacity="0.3" />
+  
+  <rect x="224" y="208" width="64" height="96" rx="32" fill="#0a0a0a" opacity="0.2" />
+  <rect x="232" y="216" width="16" height="80" rx="8" fill="#a3e635" />
+</svg>
