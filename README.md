@@ -232,4 +232,4 @@ For issues, questions, or suggestions, please:
 
 ---
 
-Built with ❤️ using Next.js and Tailwind CSS
+100% fully vibe-coded with Opencode and GLM-5
