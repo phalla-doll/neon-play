@@ -7,7 +7,7 @@ A modern browser-based gaming platform featuring 50+ curated games across 14 div
 ## 🎮 Features
 
 ### Game Catalog
-- **50+ curated browser games** from various genres
+- **250+ curated browser games** from various genres
 - **14 categories**: Action, Racing, Arcade, Puzzle, Casual, Sports, Shooting, Drift, Simulator, Adventure, Strategy, 2 Player, Girl
 - **Search functionality** by title, category, or developer
 - **Game details** with descriptions, view counts, and release dates
