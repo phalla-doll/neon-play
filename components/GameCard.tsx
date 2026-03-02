@@ -1,12 +1,33 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Game } from '@/lib/games';
 import { Play } from 'lucide-react';
 import { formatNumber, formatDate } from '@/lib/utils';
+import { useAnalytics } from '@/lib/hooks/useAnalytics';
 
-export default function GameCard({ game }: { game: Game }) {
+interface GameCardProps {
+  game: Game;
+  position?: number;
+  source?: 'grid' | 'related';
+}
+
+export default function GameCard({ game, position, source = 'grid' }: GameCardProps) {
+  const analytics = useAnalytics();
+  
+  const handleClick = () => {
+    analytics.gameClick({
+      game_id: game.id,
+      title: game.title,
+      category: game.category,
+      position: position,
+      source: source,
+    });
+  };
+
   return (
-    <Link href={`/game/${game.id}`} className="group flex flex-col gap-3">
+    <Link href={`/game/${game.id}`} className="group flex flex-col gap-3" onClick={handleClick}>
       <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-neutral-900 border border-neutral-800 group-hover:border-lime-400/50 transition-colors">
         <Image
           src={game.thumbnail}

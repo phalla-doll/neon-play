@@ -30,7 +30,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ q
 
   return (
     <div className="flex flex-col h-screen bg-neutral-950 text-neutral-200 font-sans">
-      <Header />
+      <Header resultCount={q ? filteredGames.length : 0} />
       <MobileNav />
       <div className="flex flex-1 overflow-hidden">
         <Sidebar />

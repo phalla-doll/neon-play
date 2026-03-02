@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import GameCard from './GameCard';
 import { Game } from '@/lib/games';
+import { useAnalytics } from '@/lib/hooks/useAnalytics';
 
 const CATEGORIES = ['All', 'Action', 'Racing', 'Arcade', 'Puzzle', 'Casual', 'Sports', 'Shooting', 'Drift', 'Simulator', 'Adventure', 'Strategy', '2 Player', 'Girl'];
 const ITEMS_PER_PAGE = 12;
@@ -13,6 +14,7 @@ export default function GameGrid({ games }: { games: Game[] }) {
   const [prevCategory, setPrevCategory] = useState(selectedCategory);
   const [prevGames, setPrevGames] = useState(games);
   const observerTarget = useRef<HTMLDivElement>(null);
+  const analytics = useAnalytics();
 
   // Reset displayed count when category or games change without using useEffect
   if (selectedCategory !== prevCategory || games !== prevGames) {
@@ -27,6 +29,23 @@ export default function GameGrid({ games }: { games: Game[] }) {
 
   const displayedGames = filteredGames.slice(0, displayedCount);
   const hasMore = displayedCount < filteredGames.length;
+
+  const handleCategoryChange = (category: string) => {
+    analytics.categoryFilterChanged({
+      category: category,
+      from_category: selectedCategory,
+      location: 'grid',
+    });
+    setSelectedCategory(category);
+  };
+
+  const handleCategoryClick = (category: string) => {
+    analytics.categoryFilter({
+      category: category,
+      from_category: selectedCategory,
+      location: 'grid',
+    });
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -51,7 +70,11 @@ export default function GameGrid({ games }: { games: Game[] }) {
         {CATEGORIES.map((category) => (
           <button
             key={category}
-            onClick={() => setSelectedCategory(category)}
+            type="button"
+            onClick={() => {
+              handleCategoryChange(category);
+              handleCategoryClick(category);
+            }}
             className={`px-4 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
               selectedCategory === category
                 ? 'bg-neutral-100 text-neutral-900'
@@ -64,8 +87,8 @@ export default function GameGrid({ games }: { games: Game[] }) {
       </div>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-8">
-        {displayedGames.map((game) => (
-          <GameCard key={game.id} game={game} />
+        {displayedGames.map((game, index) => (
+          <GameCard key={game.id} game={game} position={index + 1} source="grid" />
         ))}
         {filteredGames.length === 0 && (
           <div className="col-span-full py-12 text-center text-neutral-500">

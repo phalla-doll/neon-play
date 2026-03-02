@@ -3,10 +3,16 @@
 import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Search } from 'lucide-react';
+import { useAnalytics } from '@/lib/hooks/useAnalytics';
 
-export default function SearchBar() {
+interface SearchBarProps {
+  resultCount?: number;
+}
+
+export default function SearchBar({ resultCount = 0 }: SearchBarProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const analytics = useAnalytics();
   const [query, setQuery] = useState(searchParams.get('q') || '');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,6 +29,10 @@ export default function SearchBar() {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (query.trim()) {
+      analytics.search({
+        result_count: resultCount,
+        has_results: resultCount > 0,
+      });
       router.push(`/?q=${encodeURIComponent(query.trim())}`);
     } else {
       router.push('/');

@@ -4,23 +4,29 @@ import { useState, useRef, useEffect } from 'react';
 import { Maximize, Minimize, Share2, Bookmark, Flag, X, Twitter, Facebook, Copy, Check } from 'lucide-react';
 import { Game } from '@/lib/games';
 import { formatNumber, formatDate } from '@/lib/utils';
+import { useAnalytics } from '@/lib/hooks/useAnalytics';
 
 export default function GameClient({ game }: { game: Game }) {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const analytics = useAnalytics();
 
   useEffect(() => {
     const handleFullscreenChange = () => {
-      setIsFullscreen(!!document.fullscreenElement);
+      const newFullscreenState = !!document.fullscreenElement;
+      if (isFullscreen !== newFullscreenState) {
+        analytics.fullscreenToggle(newFullscreenState ? 'enter' : 'exit');
+      }
+      setIsFullscreen(newFullscreenState);
     };
 
     document.addEventListener('fullscreenchange', handleFullscreenChange);
     return () => {
       document.removeEventListener('fullscreenchange', handleFullscreenChange);
     };
-  }, []);
+  }, [isFullscreen, analytics]);
 
   const toggleFullscreen = async () => {
     if (!containerRef.current) return;
@@ -28,12 +34,14 @@ export default function GameClient({ game }: { game: Game }) {
     if (!document.fullscreenElement) {
       try {
         await containerRef.current.requestFullscreen();
+        analytics.fullscreenToggle('enter');
       } catch (err) {
         console.error('Error attempting to enable fullscreen:', err);
       }
     } else {
       if (document.exitFullscreen) {
         await document.exitFullscreen();
+        analytics.fullscreenToggle('exit');
       }
     }
   };
@@ -42,17 +50,30 @@ export default function GameClient({ game }: { game: Game }) {
     const url = encodeURIComponent(window.location.href);
     const text = encodeURIComponent(`Check out ${game.title} on Neon Play!`);
     window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+    analytics.shareCompleted({ platform: 'twitter' });
   };
 
   const handleShareFacebook = () => {
     const url = encodeURIComponent(window.location.href);
     window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+    analytics.shareCompleted({ platform: 'facebook' });
   };
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(window.location.href);
     setIsCopied(true);
     setTimeout(() => setIsCopied(false), 2000);
+    analytics.shareCompleted({ platform: 'copy' });
+  };
+
+  const handleShareModalOpen = () => {
+    setIsShareModalOpen(true);
+    analytics.shareClick();
+  };
+
+  const handleModalClose = () => {
+    setIsShareModalOpen(false);
+    analytics.modalClose('share');
   };
 
   return (
@@ -71,10 +92,12 @@ export default function GameClient({ game }: { game: Game }) {
           className="absolute inset-0 w-full h-full border-0"
           allow="autoplay; fullscreen; gamepad"
           allowFullScreen
+          title={game.title}
         />
         
         {isFullscreen && (
           <button 
+            type="button"
             onClick={toggleFullscreen}
             className="absolute top-4 right-4 z-[101] p-3 bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm transition-colors border border-white/10"
             aria-label="Exit fullscreen"
@@ -101,17 +124,23 @@ export default function GameClient({ game }: { game: Game }) {
 
           <div className="flex items-center gap-2 flex-wrap">
             <button 
-              onClick={() => setIsShareModalOpen(true)}
+              type="button"
+              onClick={handleShareModalOpen}
               className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors font-medium text-sm sm:text-base"
             >
               <Share2 className="w-4 h-4 sm:w-5 sm:h-5" />
               Share
             </button>
-            <button className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors font-medium text-sm sm:text-base">
+            <button 
+              type="button"
+              onClick={() => analytics.saveClick()}
+              className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors font-medium text-sm sm:text-base"
+            >
               <Bookmark className="w-4 h-4 sm:w-5 sm:h-5" />
               Save
             </button>
             <button 
+              type="button"
               onClick={toggleFullscreen}
               className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors font-medium text-sm sm:text-base sm:hidden"
             >
@@ -119,13 +148,18 @@ export default function GameClient({ game }: { game: Game }) {
               Fullscreen
             </button>
             <button 
+              type="button"
               onClick={toggleFullscreen}
               className="hidden sm:flex items-center gap-2 px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors font-medium text-base"
             >
               <Maximize className="w-5 h-5" />
               Fullscreen
             </button>
-            <button className="p-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors">
+            <button 
+              type="button"
+              onClick={() => analytics.reportClick()}
+              className="p-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors"
+            >
               <Flag className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           </div>
@@ -152,7 +186,8 @@ export default function GameClient({ game }: { game: Game }) {
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold text-neutral-100">Share this game</h2>
               <button 
-                onClick={() => setIsShareModalOpen(false)}
+                type="button"
+                onClick={handleModalClose}
                 className="p-2 hover:bg-neutral-800 rounded-full transition-colors text-neutral-400 hover:text-neutral-200"
               >
                 <X className="w-5 h-5" />
@@ -161,6 +196,7 @@ export default function GameClient({ game }: { game: Game }) {
             
             <div className="grid grid-cols-2 gap-4 mb-6">
               <button 
+                type="button"
                 onClick={handleShareTwitter}
                 className="flex items-center justify-center gap-2 py-3 bg-[#1DA1F2]/10 hover:bg-[#1DA1F2]/20 text-[#1DA1F2] rounded-xl transition-colors font-medium"
               >
@@ -168,6 +204,7 @@ export default function GameClient({ game }: { game: Game }) {
                 Twitter
               </button>
               <button 
+                type="button"
                 onClick={handleShareFacebook}
                 className="flex items-center justify-center gap-2 py-3 bg-[#1877F2]/10 hover:bg-[#1877F2]/20 text-[#1877F2] rounded-xl transition-colors font-medium"
               >
@@ -184,6 +221,7 @@ export default function GameClient({ game }: { game: Game }) {
                 className="flex-1 bg-transparent border-none outline-none text-sm text-neutral-400 px-2 truncate"
               />
               <button 
+                type="button"
                 onClick={handleCopyLink}
                 className="flex items-center gap-2 px-4 py-2 bg-neutral-800 hover:bg-neutral-700 text-neutral-200 rounded-lg transition-colors font-medium text-sm"
               >
