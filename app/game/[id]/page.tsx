@@ -1,10 +1,10 @@
 import Header from '@/components/Header';
 import { games } from '@/lib/games';
 import { notFound } from 'next/navigation';
-import { Share2, Flag, Maximize, Bookmark } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { formatNumber, formatDate } from '@/lib/utils';
+import GameClient from '@/components/GameClient';
 
 export default async function GamePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -24,63 +24,7 @@ export default async function GamePage({ params }: { params: Promise<{ id: strin
           <div className="max-w-[1600px] mx-auto flex flex-col xl:flex-row gap-8">
             {/* Main Content */}
             <div className="flex-1 min-w-0">
-              {/* Game Player */}
-              <div className="relative w-full aspect-video bg-black rounded-2xl overflow-hidden border border-neutral-800 shadow-2xl shadow-lime-400/5">
-                <iframe
-                  src={game.embed}
-                  className="absolute inset-0 w-full h-full border-0"
-                  allow="autoplay; fullscreen; gamepad"
-                  allowFullScreen
-                />
-              </div>
-
-              {/* Game Info */}
-              <div className="mt-6">
-                <h1 className="text-2xl font-bold text-neutral-100">{game.title}</h1>
-                
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-4">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-neutral-800 flex items-center justify-center text-lime-400 font-bold text-xl border border-neutral-700">
-                      {game.developer.charAt(0)}
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-neutral-200">{game.developer}</h3>
-                      <p className="text-sm text-neutral-400">{formatNumber(game.views)} plays</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <button className="flex items-center gap-2 px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors font-medium">
-                      <Share2 className="w-5 h-5" />
-                      Share
-                    </button>
-                    <button className="flex items-center gap-2 px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors font-medium">
-                      <Bookmark className="w-5 h-5" />
-                      Save
-                    </button>
-                    <button className="flex items-center gap-2 px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors font-medium hidden sm:flex">
-                      <Maximize className="w-5 h-5" />
-                      Fullscreen
-                    </button>
-                    <button className="p-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors">
-                      <Flag className="w-5 h-5" />
-                    </button>
-                  </div>
-                </div>
-
-                <div className="mt-6 bg-neutral-900 rounded-2xl p-4 border border-neutral-800">
-                  <div className="flex items-center gap-2 text-sm font-medium text-neutral-300 mb-2">
-                    <span>{formatNumber(game.views)} views</span>
-                    <span>•</span>
-                    <span>{formatDate(game.date)}</span>
-                    <span>•</span>
-                    <span className="text-lime-400">#{game.category}</span>
-                  </div>
-                  <p className="text-sm text-neutral-400 leading-relaxed">
-                    {game.description}
-                  </p>
-                </div>
-              </div>
+              <GameClient game={game} />
             </div>
 
             {/* Sidebar / Related Games */}
