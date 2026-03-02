@@ -1,4 +1,4 @@
-![Neon Play](https://github.com/phalla-doll/neon-play/blob/main/public/og-image-main.jpeg)
+![Neon Play](https://github.com/phalla-doll/neon-play/blob/main/public/neon-play-og-image.png)
 
 # Neon Play
 

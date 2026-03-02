@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     siteName: 'Neon Play | Online Game',
     images: [
       {
-        url: '/og-image-main.jpeg',
+        url: '/neon-play-og-image.png',
         width: 1200,
         height: 630,
         alt: 'Neon Play - Game Embedding Platform',
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Neon Play',
     description: 'A YouTube-style game embedding platform with a neon lime dark modern design.',
-    images: ['/og-image-main.jpeg'],
+    images: ['/neon-play-og-image.png'],
     creator: '@neonplay',
   },
   metadataBase: new URL('https://neongame.online/'),
