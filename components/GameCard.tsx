@@ -34,7 +34,7 @@ export default function GameCard({ game }: { game: Game }) {
           </h3>
           <p className="text-sm text-neutral-400 mt-1">{game.developer}</p>
           <div className="flex items-center gap-1 text-xs text-neutral-500 mt-0.5">
-            <span>{formatNumber(game.views)} views</span>
+            <span>{formatNumber(game.views)} plays</span>
             <span>•</span>
             <span>{formatDate(game.date)}</span>
           </div>
