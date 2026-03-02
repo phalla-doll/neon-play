@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://neon-play.vercel.app/',
+    url: 'https://neongame.online/',
     title: 'Neon Play',
     description: 'A YouTube-style game embedding platform with a neon lime dark modern design.',
     siteName: 'Neon Play',
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     images: ['/og-image-main.jpeg'],
     creator: '@neonplay',
   },
-  metadataBase: new URL('https://neon-play.vercel.app/'),
+  metadataBase: new URL('https://neongame.online/'),
   themeColor: [
     { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' },
     { media: '(prefers-color-scheme: light)', color: '#ffffff' },
