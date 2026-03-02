@@ -109,12 +109,6 @@ npm run start    # Start production server
 
 ## 🔧 Configuration
 
-### Google Analytics (Optional)
-Set your Google Analytics ID in `.env.local`:
-```
-NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
-```
-
 ### Image Domains
 Remote image domains are configured in `next.config.ts`:
 - `www.onlinegames.io` - Game thumbnails
@@ -187,14 +181,6 @@ Deploy the `.next` directory to your hosting provider of choice:
 - DigitalOcean
 - Railway
 - Render
-
-## 🔐 Environment Variables
-
-Optional environment variables (create `.env.local`):
-
-```env
-NEXT_PUBLIC_GA_ID=your-google-analytics-id
-```
 
 ## 🐛 Troubleshooting
 
