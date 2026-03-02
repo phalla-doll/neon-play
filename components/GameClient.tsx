@@ -1,80 +1,66 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
-import { Maximize, Minimize, Share2, Bookmark, Flag, X, Twitter, Facebook, Copy, Check } from 'lucide-react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { Maximize, Minimize, Share2, Bookmark, Flag, X, Twitter, Facebook, Copy, Check, BookmarkCheck } from 'lucide-react';
 import { Game } from '@/lib/games';
 import { formatNumber, formatDate } from '@/lib/utils';
 import { useAnalytics } from '@/lib/hooks/useAnalytics';
+import { useFullscreen } from '@/hooks/use-fullscreen';
+import { addToHistory } from '@/lib/storage';
+import { useSavedGames } from '@/hooks/use-game-storage';
 
 export default function GameClient({ game }: { game: Game }) {
-  const [isFullscreen, setIsFullscreen] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const analytics = useAnalytics();
+  const { isFullscreen, toggleFullscreen } = useFullscreen(containerRef);
+  const { isSaved: checkIsSaved, toggleSave } = useSavedGames();
 
   useEffect(() => {
-    const handleFullscreenChange = () => {
-      const newFullscreenState = !!document.fullscreenElement;
-      if (isFullscreen !== newFullscreenState) {
-        analytics.fullscreenToggle(newFullscreenState ? 'enter' : 'exit');
-      }
-      setIsFullscreen(newFullscreenState);
-    };
-
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
-    return () => {
-      document.removeEventListener('fullscreenchange', handleFullscreenChange);
-    };
+    analytics.fullscreenToggle(isFullscreen ? 'enter' : 'exit');
   }, [isFullscreen, analytics]);
 
-  const toggleFullscreen = async () => {
-    if (!containerRef.current) return;
+  useEffect(() => {
+    addToHistory(game.id);
+  }, [game.id]);
 
-    if (!document.fullscreenElement) {
-      try {
-        await containerRef.current.requestFullscreen();
-        analytics.fullscreenToggle('enter');
-      } catch (err) {
-        console.error('Error attempting to enable fullscreen:', err);
-      }
-    } else {
-      if (document.exitFullscreen) {
-        await document.exitFullscreen();
-        analytics.fullscreenToggle('exit');
-      }
-    }
-  };
+  const gameIsSaved = checkIsSaved(game.id);
 
-  const handleShareTwitter = () => {
+  const handleSaveToggle = useCallback(() => {
+    toggleSave(game.id);
+    analytics.saveClick();
+  }, [toggleSave, game.id, analytics]);
+
+  const handleShareTwitter = useCallback(() => {
     const url = encodeURIComponent(window.location.href);
     const text = encodeURIComponent(`Check out ${game.title} on Neon Play!`);
     window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
     analytics.shareCompleted({ platform: 'twitter' });
-  };
+  }, [analytics, game.title]);
 
-  const handleShareFacebook = () => {
+  const handleShareFacebook = useCallback(() => {
     const url = encodeURIComponent(window.location.href);
     window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
     analytics.shareCompleted({ platform: 'facebook' });
-  };
+  }, [analytics]);
 
-  const handleCopyLink = () => {
+  const handleCopyLink = useCallback(() => {
     navigator.clipboard.writeText(window.location.href);
     setIsCopied(true);
     setTimeout(() => setIsCopied(false), 2000);
     analytics.shareCompleted({ platform: 'copy' });
-  };
+  }, [analytics]);
 
-  const handleShareModalOpen = () => {
+  const handleShareModalOpen = useCallback(() => {
     setIsShareModalOpen(true);
     analytics.shareClick();
-  };
+  }, [analytics]);
 
-  const handleModalClose = () => {
+  const handleModalClose = useCallback(() => {
     setIsShareModalOpen(false);
     analytics.modalClose('share');
-  };
+  }, [analytics]);
 
   return (
     <>
@@ -133,11 +119,15 @@ export default function GameClient({ game }: { game: Game }) {
             </button>
             <button 
               type="button"
-              onClick={() => analytics.saveClick()}
-              className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors font-medium text-sm sm:text-base"
+              onClick={handleSaveToggle}
+              className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full border transition-colors font-medium text-sm sm:text-base ${
+                gameIsSaved 
+                  ? 'bg-lime-400/10 border-lime-400/30 text-lime-400 hover:bg-lime-400/20' 
+                  : 'bg-neutral-800 border-neutral-700 text-neutral-200 hover:bg-neutral-700'
+              }`}
             >
-              <Bookmark className="w-4 h-4 sm:w-5 sm:h-5" />
-              Save
+              {gameIsSaved ? <BookmarkCheck className="w-4 h-4 sm:w-5 sm:h-5" /> : <Bookmark className="w-4 h-4 sm:w-5 sm:h-5" />}
+              {gameIsSaved ? 'Saved' : 'Save'}
             </button>
             <button 
               type="button"
@@ -158,6 +148,7 @@ export default function GameClient({ game }: { game: Game }) {
             <button 
               type="button"
               onClick={() => analytics.reportClick()}
+              aria-label="Report this game"
               className="p-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors"
             >
               <Flag className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -218,7 +209,7 @@ export default function GameClient({ game }: { game: Game }) {
                 type="text" 
                 readOnly 
                 value={typeof window !== 'undefined' ? window.location.href : ''} 
-                className="flex-1 bg-transparent border-none outline-none text-sm text-neutral-400 px-2 truncate"
+                className="flex-1 bg-transparent text-sm text-neutral-400 px-2 truncate focus:outline-none focus-visible:ring-0"
               />
               <button 
                 type="button"

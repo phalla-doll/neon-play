@@ -1,6 +1,6 @@
 import type {Metadata} from 'next';
 import { Inter } from 'next/font/google';
-import { GoogleAnalytics } from '@next/third-parties/google';
+import DeferredGoogleAnalytics from '@/components/GoogleAnalytics';
 import './globals.css'; // Global styles
 
 const inter = Inter({
@@ -60,11 +60,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang="en" className={`${inter.variable} dark`}>
+    <html lang="en" className={`${inter.variable} dark`} style={{ colorScheme: 'dark' }}>
       <body className="bg-neutral-950 text-neutral-200 font-sans antialiased min-h-screen flex flex-col" suppressHydrationWarning>
         {children}
       </body>
-      <GoogleAnalytics gaId="G-J2WS9KFG9R" />
+      <DeferredGoogleAnalytics gaId="G-J2WS9KFG9R" />
     </html>
   );
 }

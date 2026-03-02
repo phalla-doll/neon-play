@@ -7,6 +7,26 @@ import Link from 'next/link';
 import { formatNumber, formatDate } from '@/lib/utils';
 import GameClient from '@/components/GameClient';
 import GameCard from '@/components/GameCard';
+import type { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
+  const game = games.find((g) => g.id === id);
+
+  if (!game) {
+    return { title: 'Game Not Found' };
+  }
+
+  return {
+    title: `${game.title} - Neon Play`,
+    description: game.description,
+    openGraph: {
+      title: game.title,
+      description: game.description,
+      images: [{ url: game.thumbnail, width: 1200, height: 630, alt: game.title }],
+    },
+  };
+}
 
 export default async function GamePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;

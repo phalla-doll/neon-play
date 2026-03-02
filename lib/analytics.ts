@@ -9,7 +9,7 @@ export interface GameTrackingParams {
   title: string;
   category: string;
   position?: number;
-  source?: 'grid' | 'related' | 'sidebar' | 'mobile_nav';
+  source?: 'grid' | 'related' | 'sidebar' | 'mobile_nav' | 'saved' | 'history';
 }
 
 export interface NavigationParams {

@@ -6,17 +6,18 @@ import { Game } from '@/lib/games';
 import { Play } from 'lucide-react';
 import { formatNumber, formatDate } from '@/lib/utils';
 import { useAnalytics } from '@/lib/hooks/useAnalytics';
+import { useCallback } from 'react';
 
 interface GameCardProps {
   game: Game;
   position?: number;
-  source?: 'grid' | 'related';
+  source?: 'grid' | 'related' | 'history';
 }
 
 export default function GameCard({ game, position, source = 'grid' }: GameCardProps) {
   const analytics = useAnalytics();
-  
-  const handleClick = () => {
+
+  const handleClick = useCallback(() => {
     analytics.gameClick({
       game_id: game.id,
       title: game.title,
@@ -24,7 +25,7 @@ export default function GameCard({ game, position, source = 'grid' }: GameCardPr
       position: position,
       source: source,
     });
-  };
+  }, [analytics, game.id, game.title, game.category, position, source]);
 
   return (
     <Link href={`/game/${game.id}`} className="group flex flex-col gap-3" onClick={handleClick}>
