@@ -1,7 +1,8 @@
 'use client';
 
 import { useRef } from 'react';
-import { Maximize, Minimize } from 'lucide-react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { ExpandIcon, MinimizeIcon } from '@hugeicons/core-free-icons';
 import { useFullscreen } from '@/hooks/use-fullscreen';
 
 interface GamePlayerProps {
@@ -36,7 +37,7 @@ export default function GamePlayer({ embedUrl }: GamePlayerProps) {
           className="absolute top-4 right-4 z-[101] p-3 bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm transition-colors border border-white/10"
           aria-label="Exit fullscreen"
         >
-          <Minimize className="w-6 h-6" />
+          <HugeiconsIcon icon={MinimizeIcon} size={24} color="white" strokeWidth={1.5} />
         </button>
       )}
     </div>

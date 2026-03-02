@@ -1,16 +1,17 @@
 'use client';
 
 import Link from 'next/link';
-import { Home, Trophy, Car, Puzzle, Clock } from 'lucide-react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { Home01Icon, Award01Icon, Car01Icon, PuzzleIcon, ClockIcon } from '@hugeicons/core-free-icons';
 import { useAnalytics } from '@/lib/hooks/useAnalytics';
 import { MOBILE_CATEGORIES } from '@/lib/categories';
 import { useCallback } from 'react';
 
 const CATEGORY_ICONS = {
-  Action: Trophy,
-  Racing: Car,
-  Puzzle: Puzzle,
-  Casual: Clock,
+  Action: Award01Icon,
+  Racing: Car01Icon,
+  Puzzle: PuzzleIcon,
+  Casual: ClockIcon,
 } as const;
 
 export default function MobileNav() {
@@ -36,7 +37,7 @@ export default function MobileNav() {
           className="flex items-center gap-2 px-4 py-2 bg-neutral-900 rounded-full text-neutral-300 hover:text-lime-400 transition-colors"
           onClick={handleHomeClick}
         >
-          <Home className="w-4 h-4" />
+          <HugeiconsIcon icon={Home01Icon} size={16} color="currentColor" strokeWidth={1.5} />
           <span className="text-sm font-medium">Home</span>
         </Link>
         <div className="w-px h-6 bg-neutral-800 mx-1"></div>
@@ -49,7 +50,7 @@ export default function MobileNav() {
               className="flex items-center gap-2 px-4 py-2 bg-neutral-900 rounded-full text-neutral-400 hover:text-neutral-200 transition-colors"
               onClick={() => handleCategoryClick(cat.label)}
             >
-              <IconComponent className="w-4 h-4" aria-hidden="true" />
+              <HugeiconsIcon icon={IconComponent} size={16} color="currentColor" strokeWidth={1.5} aria-hidden="true" />
               <span className="text-sm font-medium">{cat.label}</span>
             </Link>
           );

@@ -34,7 +34,7 @@ A modern browser-based gaming platform featuring 50+ curated games across 14 div
 
 **Styling & UI**
 - Tailwind CSS v4
-- Lucide React icons
+- HugeIcon icons
 - Motion (animations)
 
 **Analytics & Storage**
@@ -207,7 +207,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 - Game content hosted by [OnlineGames.io](https://www.onlinegames.io)
 - Built with [Next.js](https://nextjs.org/)
-- Icons by [Lucide](https://lucide.dev/)
+- Icons by [HugeIcon](https://hugeicons.com/)
 - Animations by [Motion](https://motion.dev/)
 
 ## 📞 Support

@@ -3,7 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Game } from '@/lib/games';
-import { Play, X } from 'lucide-react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { PlayIcon, Cancel02Icon } from '@hugeicons/core-free-icons';
 import { formatNumber, formatDate } from '@/lib/utils';
 import { useAnalytics } from '@/lib/hooks/useAnalytics';
 import { useCallback } from 'react';
@@ -45,7 +46,7 @@ export default function SavedGameCard({ game, onUnsave }: SavedGameCardProps) {
           />
           <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
             <div className="w-12 h-12 rounded-full bg-lime-400 flex items-center justify-center text-black shadow-[0_0_20px_rgba(204,255,0,0.5)]">
-              <Play className="w-6 h-6 ml-1" />
+              <HugeiconsIcon icon={PlayIcon} size={24} color="black" strokeWidth={1.5} className="ml-1" />
             </div>
           </div>
           <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-1 rounded text-xs font-mono text-neutral-300">
@@ -75,7 +76,7 @@ export default function SavedGameCard({ game, onUnsave }: SavedGameCardProps) {
         className="absolute top-2 right-2 p-2 bg-black/60 hover:bg-black/80 rounded-full transition-colors opacity-0 group-hover:opacity-100"
         aria-label="Unsave this game"
       >
-        <X className="w-4 h-4 text-white" />
+        <HugeiconsIcon icon={Cancel02Icon} size={16} color="white" strokeWidth={1.5} />
       </button>
     </div>
   );
