@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { Share2, Flag, Maximize, Bookmark } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { formatNumber, formatDate } from '@/lib/utils';
 
 export default async function GamePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -26,7 +27,7 @@ export default async function GamePage({ params }: { params: Promise<{ id: strin
               {/* Game Player */}
               <div className="relative w-full aspect-video bg-black rounded-2xl overflow-hidden border border-neutral-800 shadow-2xl shadow-lime-400/5">
                 <iframe
-                  src={game.url}
+                  src={game.embed}
                   className="absolute inset-0 w-full h-full border-0"
                   allow="autoplay; fullscreen; gamepad"
                   allowFullScreen
@@ -44,7 +45,7 @@ export default async function GamePage({ params }: { params: Promise<{ id: strin
                     </div>
                     <div>
                       <h3 className="font-semibold text-neutral-200">{game.developer}</h3>
-                      <p className="text-sm text-neutral-400">{game.views} plays</p>
+                      <p className="text-sm text-neutral-400">{formatNumber(game.views)} plays</p>
                     </div>
                   </div>
 
@@ -69,15 +70,14 @@ export default async function GamePage({ params }: { params: Promise<{ id: strin
 
                 <div className="mt-6 bg-neutral-900 rounded-2xl p-4 border border-neutral-800">
                   <div className="flex items-center gap-2 text-sm font-medium text-neutral-300 mb-2">
-                    <span>{game.views} views</span>
+                    <span>{formatNumber(game.views)} views</span>
                     <span>•</span>
-                    <span>{game.date}</span>
+                    <span>{formatDate(game.date)}</span>
                     <span>•</span>
                     <span className="text-lime-400">#{game.category}</span>
                   </div>
                   <p className="text-sm text-neutral-400 leading-relaxed">
-                    Play {game.title} online for free. This is an awesome {game.category.toLowerCase()} game developed by {game.developer}. 
-                    Enjoy the best gaming experience right in your browser.
+                    {game.description}
                   </p>
                 </div>
               </div>
@@ -105,7 +105,7 @@ export default async function GamePage({ params }: { params: Promise<{ id: strin
                       {relatedGame.title}
                     </h4>
                     <p className="text-xs text-neutral-400 mt-1">{relatedGame.developer}</p>
-                    <p className="text-xs text-neutral-500 mt-0.5">{relatedGame.views} views • {relatedGame.date}</p>
+                    <p className="text-xs text-neutral-500 mt-0.5">{formatNumber(relatedGame.views)} views • {formatDate(relatedGame.date)}</p>
                   </div>
                 </Link>
               ))}

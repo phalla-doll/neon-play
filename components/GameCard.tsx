@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Game } from '@/lib/games';
 import { Play } from 'lucide-react';
+import { formatNumber, formatDate } from '@/lib/utils';
 
 export default function GameCard({ game }: { game: Game }) {
   return (
@@ -33,9 +34,9 @@ export default function GameCard({ game }: { game: Game }) {
           </h3>
           <p className="text-sm text-neutral-400 mt-1">{game.developer}</p>
           <div className="flex items-center gap-1 text-xs text-neutral-500 mt-0.5">
-            <span>{game.views} views</span>
+            <span>{formatNumber(game.views)} views</span>
             <span>•</span>
-            <span>{game.date}</span>
+            <span>{formatDate(game.date)}</span>
           </div>
         </div>
       </div>
