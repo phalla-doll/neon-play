@@ -1,7 +1,7 @@
 import Header from '@/components/Header';
 import { games } from '@/lib/games';
 import { notFound } from 'next/navigation';
-import { Share2, Flag, Maximize } from 'lucide-react';
+import { Share2, Flag, Maximize, Bookmark } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -44,7 +44,7 @@ export default async function GamePage({ params }: { params: Promise<{ id: strin
                     </div>
                     <div>
                       <h3 className="font-semibold text-neutral-200">{game.developer}</h3>
-                      <p className="text-sm text-neutral-400">1.2M subscribers</p>
+                      <p className="text-sm text-neutral-400">{game.views} plays</p>
                     </div>
                   </div>
 
@@ -52,6 +52,10 @@ export default async function GamePage({ params }: { params: Promise<{ id: strin
                     <button className="flex items-center gap-2 px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors font-medium">
                       <Share2 className="w-5 h-5" />
                       Share
+                    </button>
+                    <button className="flex items-center gap-2 px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors font-medium">
+                      <Bookmark className="w-5 h-5" />
+                      Save
                     </button>
                     <button className="flex items-center gap-2 px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-full border border-neutral-700 transition-colors font-medium hidden sm:flex">
                       <Maximize className="w-5 h-5" />
