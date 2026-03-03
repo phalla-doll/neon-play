@@ -36,7 +36,10 @@ export default async function GamePage({ params }: { params: Promise<{ id: strin
     notFound();
   }
 
-  const relatedGames = games.filter((g) => g.id !== id).slice(0, 5);
+  const relatedGames = [
+    ...games.filter((g) => g.id !== id && g.category !== game.category),
+    ...games.filter((g) => g.id !== id)
+  ].slice(0, 5);
 
   return (
     <div className="flex flex-col h-screen bg-neutral-950 text-neutral-200 font-sans">
