@@ -218,4 +218,4 @@ For issues, questions, or suggestions, please:
 
 ---
 
-100% fully vibe-coded with Opencode and GLM-5
+100% fully vibe-coded (with intention) using Opencode and GLM-5
