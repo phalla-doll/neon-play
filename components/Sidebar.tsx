@@ -1,11 +1,16 @@
 'use client';
 
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Home01Icon, CompassIcon, Award01Icon, Car01Icon, PuzzleIcon, ClockIcon, Bookmark01Icon } from '@hugeicons/core-free-icons';
 import { useAnalytics } from '@/lib/hooks/useAnalytics';
 import { SIDEBAR_CATEGORIES } from '@/lib/categories';
 import { useCallback } from 'react';
+
+const SidebarShareSection = dynamic(() => import('./SidebarShareSection'), {
+  ssr: false,
+});
 
 const CATEGORY_ICONS = {
   Action: Award01Icon,
@@ -34,8 +39,8 @@ export default function Sidebar() {
   }, [analytics]);
 
   return (
-    <aside className="w-64 flex-shrink-0 bg-neutral-950 border-r border-neutral-800 h-[calc(100vh-4rem)] overflow-y-auto hidden md:block">
-      <div className="px-4 py-2 space-y-6">
+    <aside className="w-64 flex-shrink-0 bg-neutral-950 border-r border-neutral-800 hidden md:flex flex flex-col">
+      <div className="px-4 py-2 space-y-2 overflow-y-auto flex-1 min-h-0">
         <div className="space-y-1">
           {links.map((link) => (
             <Link
@@ -91,6 +96,10 @@ export default function Sidebar() {
             <span className="font-medium">Saved</span>
           </Link>
         </div>
+      </div>
+
+      <div className="flex-shrink-0 bg-neutral-950">
+        <SidebarShareSection />
       </div>
     </aside>
   );
