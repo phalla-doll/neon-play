@@ -3,15 +3,20 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { ExpandIcon, MinimizeIcon, Share02Icon, Bookmark01Icon, Flag01Icon, Cancel02Icon, TwitterIcon, FacebookIcon, Copy01Icon, CheckmarkCircleIcon, BookmarkCheckIcon } from '@hugeicons/core-free-icons';
-import { Game } from '@/lib/games';
+import { Game, games } from '@/lib/games';
 import { formatNumber, formatDate } from '@/lib/utils';
 import { useAnalytics } from '@/lib/hooks/useAnalytics';
 import { useFullscreen } from '@/hooks/use-fullscreen';
 import { addToHistory } from '@/lib/storage';
 import { useSavedGames } from '@/hooks/use-game-storage';
+import GameCard from './GameCard';
 
 export default function GameClient({ game }: { game: Game }) {
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const relatedGames = [
+    ...games.filter(g => g.id !== game.id && g.category === game.category),
+    ...games.filter(g => g.id !== game.id)
+  ].slice(0, 6);
   const [isCopied, setIsCopied] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const analytics = useAnalytics();
@@ -169,6 +174,17 @@ export default function GameClient({ game }: { game: Game }) {
             {game.description}
           </p>
         </div>
+
+        {relatedGames.length > 0 && (
+          <div className="py-6">
+            <h2 className="text-lg font-semibold text-neutral-100 mb-4">You might also like</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {relatedGames.map((game, index) => (
+                <GameCard key={game.id} game={game} position={index + 1} source="related" />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Share Modal */}
