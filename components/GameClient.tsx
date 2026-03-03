@@ -178,7 +178,7 @@ export default function GameClient({ game }: { game: Game }) {
         {relatedGames.length > 0 && (
           <div className="py-6">
             <h2 className="text-lg font-semibold text-neutral-100 mb-4">You might also like</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {relatedGames.map((game, index) => (
                 <GameCard key={game.id} game={game} position={index + 1} source="related" />
               ))}
