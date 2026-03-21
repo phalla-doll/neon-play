@@ -41,7 +41,6 @@ export default function SavedGameCard({ game, onUnsave }: SavedGameCardProps) {
             src={game.thumbnail}
             alt={game.title}
             fill
-            unoptimized
             className="object-cover transition-transform duration-300 group-hover:scale-105"
             referrerPolicy="no-referrer"
           />

@@ -24,7 +24,7 @@ export default function SidebarShareSection() {
       <div className="relative">
         <QRCodeSVG value={shareUrl} size={128} className="rounded-lg" />
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <Image src="/icon-512.png" alt="Logo" width={24} height={24} className="w-6 h-6 bg-white rounded-md" />
+          <Image src="/icon-512.png" alt="Logo" unoptimized width={24} height={24} className="w-6 h-6 bg-white rounded-md" />
         </div>
       </div>
       <p className="text-xs text-neutral-500">Share with your friends</p>
