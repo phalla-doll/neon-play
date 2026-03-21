@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://neongame.online/',
+    url: 'https://game.manthaa.dev/',
     title: 'Neon Play',
     description: 'A YouTube-style game embedding platform with a neon lime dark modern design.',
     siteName: 'Neon Play | Online Game',
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     images: ['/neon-play-og-image.png'],
     creator: '@neonplay',
   },
-  metadataBase: new URL('https://neongame.online/'),
+  metadataBase: new URL('https://game.manthaa.dev/'),
 };
 
 export const viewport: Viewport = {

@@ -4,4 +4,4 @@ Disallow: /api/
 Disallow: /_next/
 Disallow: /static/
 Crawl-delay: 1
-Sitemap: https://neongame.online/sitemap.xml
+Sitemap: https://game.manthaa.dev/sitemap.xml
